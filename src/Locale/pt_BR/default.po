@@ -1,0 +1,35 @@
+msgid "Add"
+msgstr "Novo"
+
+msgid "View"
+msgstr "Detalhes"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Delete"
+msgstr "Excluir"
+
+msgid "Status"
+msgstr "Situação"
+
+msgid "Updated"
+msgstr "Alteração"
+
+msgid "Modified"
+msgstr "Modificação"
+
+msgid "Created"
+msgstr "Criação"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "previous"
+msgstr "Anterior"
+
+msgid "next"
+msgstr "Proximo"
