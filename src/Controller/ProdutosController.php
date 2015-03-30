@@ -17,13 +17,19 @@ class ProdutosController extends AppController {
      * @return void
      */
     public function index() {
-        $this->paginate = [
+        $options = [
             'contain' => ['Categorias'],
-            'conditions' => ['Produtos.status' => 1]
+            'conditions' => ['Produtos.status' => 1],
+            'limit' => 12,
+            'order' => ['nome' => 'DESC']
         ];
-        if (!empty($this->request->query)) {
-            $this->paginate['conditions']['Produtos.categoria_id'] = $this->request->query['categoria'];
+        if (isset($this->request->query['categoria']) and ! empty($this->request->query['categoria'])) {
+            $options['conditions']['Produtos.categoria_id'] = $this->request->query['categoria'];
+        } else {
+            $options['order'] = ['rand()'];
         }
+
+        $this->paginate = $options;
         $this->set('produtos', $this->paginate($this->Produtos));
         $this->set('_serialize', ['produtos']);
     }

@@ -63,7 +63,7 @@
                     <h1><?php echo $this->request->params['controller']; ?></h1>
                     <hr />
                 </div>
-                
+
 
                 <div class="col-md-3">
                     <div class="list-group">
@@ -91,14 +91,7 @@
         <div class="container">
 
             <hr>
-
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                    </div>
-                </div>
-            </footer>
+            <div class="text-right">Desenvolvido por <?= $this->Html->link('Agência Voxel', 'http://agenciavoxel.com.br') ?></div>
 
         </div>
         <!-- /.container -->

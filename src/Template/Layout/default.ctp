@@ -63,6 +63,7 @@
                     <p class="lead">Categorias</p>
                     <div class="list-group">
                         <?php
+                        echo $this->Html->link('Todos', ['controller' => 'produtos', 'action' => 'index'], ['class' => 'list-group-item']);
                         foreach ($this->Pinheiro->categorias() as $key => $value) {
                             echo $this->Html->link($value->nome, ['controller' => 'produtos', 'action' => 'index', 'categoria' => $value->id], ['class' => 'list-group-item']);
                         }
@@ -174,6 +175,7 @@
 
             </div>
             <hr>
+            <div class="text-right">Desenvolvido por <?= $this->Html->link('Agência Voxel', 'http://agenciavoxel.com.br') ?></div>
 
         </div>
         <!-- /.container -->
