@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use App\Model\Entity\Usuario;
@@ -10,8 +11,18 @@ use Cake\Validation\Validator;
 /**
  * Usuarios Model
  */
-class UsuariosTable extends Table
-{
+class UsuariosTable extends Table {
+
+    public $filterArgs = [
+        'id' => ['type' => 'value'],
+        'nome' => ['type' => 'like'],
+        'email' => ['type' => 'like'],
+        'senha' => ['type' => 'like'],
+        'status' => ['type' => 'value'],
+        'created' => ['type' => 'like'],
+        'modified' => ['type' => 'like'],
+        'updated' => ['type' => 'like'],
+    ];
 
     /**
      * Initialize method
@@ -19,12 +30,12 @@ class UsuariosTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
-    {
+    public function initialize(array $config) {
         $this->table('usuarios');
         $this->displayField('nome');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Search.Searchable');
     }
 
     /**
@@ -33,20 +44,19 @@ class UsuariosTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
+    public function validationDefault(Validator $validator) {
         $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create')
-            ->requirePresence('nome', 'create')
-            ->notEmpty('nome')
-            ->add('email', 'valid', ['rule' => 'email'])
-            ->requirePresence('email', 'create')
-            ->notEmpty('email')
-            ->allowEmpty('senha')
-            ->add('status', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+                ->add('id', 'valid', ['rule' => 'numeric'])
+                ->allowEmpty('id', 'create')
+                ->requirePresence('nome', 'create')
+                ->notEmpty('nome')
+                ->add('email', 'valid', ['rule' => 'email'])
+                ->requirePresence('email', 'create')
+                ->notEmpty('email')
+                ->allowEmpty('senha')
+                ->add('status', 'valid', ['rule' => 'numeric'])
+                ->requirePresence('status', 'create')
+                ->notEmpty('status');
 
         return $validator;
     }
@@ -58,9 +68,9 @@ class UsuariosTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
-    {
+    public function buildRules(RulesChecker $rules) {
         $rules->add($rules->isUnique(['email']));
         return $rules;
     }
+
 }

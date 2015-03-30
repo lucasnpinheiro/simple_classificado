@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
@@ -8,17 +9,34 @@ use App\Controller\AppController;
  *
  * @property \App\Model\Table\CategoriasTable $Categorias
  */
-class CategoriasController extends AppController
-{
+class CategoriasController extends AppController {
+
+    public $presetVars = [
+        'id' => ['type' => 'value'],
+        'nome' => ['type' => 'like'],
+        'status' => ['type' => 'value'],
+        'created' => ['type' => 'like'],
+        'modified' => ['type' => 'like'],
+        'updated' => ['type' => 'like'],
+    ];
 
     /**
      * Index method
      *
      * @return void
      */
-    public function index()
-    {
-        $this->set('categorias', $this->paginate($this->Categorias));
+    public function index() {
+        $this->loadComponent('Search.Prg');
+        $this->Prg->commonProcess();
+        $options = [
+            'order' => ['Categorias.nome' => 'ASC'],
+            'conditions' => $this->Prg->parsedParams()
+        ];
+        $this->paginate = $options;
+        $categorias = $this->paginate($this->Categorias);
+
+        $categoria = $this->Categorias->newEntity();
+        $this->set(compact('categorias', 'categoria'));
         $this->set('_serialize', ['categorias']);
     }
 
@@ -29,8 +47,7 @@ class CategoriasController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $categoria = $this->Categorias->get($id, [
             'contain' => ['Produtos']
         ]);
@@ -43,8 +60,7 @@ class CategoriasController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $categoria = $this->Categorias->newEntity();
         if ($this->request->is('post')) {
             $categoria = $this->Categorias->patchEntity($categoria, $this->request->data);
@@ -66,8 +82,7 @@ class CategoriasController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $categoria = $this->Categorias->get($id, [
             'contain' => []
         ]);
@@ -91,8 +106,7 @@ class CategoriasController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $categoria = $this->Categorias->get($id);
         if ($this->Categorias->delete($categoria)) {
@@ -102,4 +116,5 @@ class CategoriasController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
 }

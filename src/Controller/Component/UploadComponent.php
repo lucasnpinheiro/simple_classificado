@@ -85,7 +85,8 @@ class UploadComponent extends Component {
      * @return UploadComponent
      */
     public function destination($path) {
-        $this->destination = WWW_ROOT . 'files' . DS . rtrim(ltrim($path, DS), DS) . DS;
+        $d = rtrim(WWW_ROOT . 'files' . DS . rtrim(ltrim($path, DS), DS) . DS, DS) . DS;
+        $this->destination = $d;
         return $this;
     }
 
@@ -137,79 +138,84 @@ class UploadComponent extends Component {
      */
     public function run($form_data, $path = null) {
         // silent fail on no image
-        if ($form_data['error'] == self::NO_FILE_UPLOAD) {
-            throw new Exception($this->errors(self::NO_FILE_UPLOAD), self::NO_FILE_UPLOAD);
-        }
-
-        // handle optional path passed in
-        if (empty($path))
-            $this->destination($path);
-
-        $this->form_data = $form_data;
-
-        // check we have a path - only if not returning the content
-        if ($this->content_only === false) {
-            if (empty($path) && empty($this->destination)) {
-                $this->form_data['error'] = self::NO_DIRECTORY_FOR_UPLOAD;
+        if (trim($form_data['name']) != '') {
+            if ($form_data['error'] == self::NO_FILE_UPLOAD) {
+                $this->error[] = $this->errors(self::NO_FILE_UPLOAD);
             }
-        }
 
-        // check file types
-        if (!empty($this->file_types)) {
-            if (!in_array($this->form_data['type'], $this->file_types)) {
-                $this->form_data['error'] = self::FILE_FORMAT_NOT_ALLOWED;
+            if (!empty($this->error)) {
+                return 0;
             }
-        }
 
-        // check max size set in code
-        if ($this->max_size > 0 && $this->form_data['size'] > $this->max_size) {
-            $this->form_data['error'] = self::FILE_SIZE_EXCEEDS_CODE_MAX;
-        }
+            // handle optional path passed in
+            if (empty($path))
+                $this->destination($path);
 
-        // check error code		
-        if ($this->form_data['error'] !== self::SUCCESS) {
-            $this->error[] = $this->errors($this->form_data['error']);
-        }
-        if (!empty($this->error)) {
-            return FALSE;
-        }
-        // if only content required read file and return
-        if ($this->content_only) {
-            return file_get_contents($this->form_data['tmp_name']);
-        }
+            $this->form_data = $form_data;
 
-        // parse out class params to make the final destination string
-        if (empty($this->filename)) {
-            $ext = explode('/', $this->form_data['type']);
-            $this->filename = md5($this->form_data['name'] . time()) . '.' . $ext[1];
-        }
+            // check we have a path - only if not returning the content
+            if ($this->content_only === false) {
+                if (empty($path) && empty($this->destination)) {
+                    $this->form_data['error'] = self::NO_DIRECTORY_FOR_UPLOAD;
+                }
+            }
 
-        $destination = $this->destination . $this->filename;
+            // check file types
+            if (!empty($this->file_types)) {
+                if (!in_array($this->form_data['type'], $this->file_types)) {
+                    $this->form_data['error'] = self::FILE_FORMAT_NOT_ALLOWED;
+                }
+            }
 
-        // create the destination unless otherwise set
-        if ($this->create_destination) {
-            $dir = dirname($destination);
-            if (!is_dir($dir)) {
-                mkdir($dir, 0777, true);
+            // check max size set in code
+            if ($this->max_size > 0 && $this->form_data['size'] > $this->max_size) {
+                $this->form_data['error'] = self::FILE_SIZE_EXCEEDS_CODE_MAX;
+            }
+
+            // check error code		
+            if ($this->form_data['error'] !== self::SUCCESS) {
+                $this->error[] = $this->errors($this->form_data['error']);
+            }
+            if (!empty($this->error)) {
+                return 0;
+            }
+            // if only content required read file and return
+            if ($this->content_only) {
+                return file_get_contents($this->form_data['tmp_name']);
+            }
+
+            // parse out class params to make the final destination string
+            if (empty($this->filename)) {
+                $ext = explode('/', $this->form_data['type']);
+                $this->filename = md5($this->form_data['name'] . time()) . '.' . $ext[1];
+            }
+
+            $destination = $this->destination . $this->filename;
+            // create the destination unless otherwise set
+            if ($this->create_destination) {
+                $dir = dirname($destination);
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0777, true);
+                }
+            } else {
+                $dir = dirname($destination);
+                if (!is_dir($dir)) {
+                    $this->error[] = $this->errors(self::DESTINATION_NOT_AVAILABLE);
+                }
+            }
+
+            if (!move_uploaded_file($this->form_data['tmp_name'], $destination)) {
+                $this->error[] = $this->errors(self::SERVER_WRITE_FAIL);
+            }
+
+            // if we get here without returning something has definitely gone wrong
+            if (empty($this->error)) {
+                return 1;
+            } else {
+                return 0;
             }
         } else {
-            $dir = dirname($destination);
-            if (!is_dir($dir)) {
-                $this->error[] = $this->errors(self::DESTINATION_NOT_AVAILABLE);
-            }
-        }
-
-        if (move_uploaded_file($this->form_data['tmp_name'], $destination)) {
-            return $destination;
-        } else {
-            $this->error[] = $this->errors(self::SERVER_WRITE_FAIL);
-        }
-
-        // if we get here without returning something has definitely gone wrong
-        if (empty($this->error)) {
-            return TRUE;
-        } else {
-            return FALSE;
+            return -1;
         }
     }
 

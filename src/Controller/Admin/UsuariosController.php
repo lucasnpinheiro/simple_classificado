@@ -11,13 +11,34 @@ use App\Controller\AppController;
  */
 class UsuariosController extends AppController {
 
+    public $presetVars = [
+        'id' => ['type' => 'value'],
+        'nome' => ['type' => 'like'],
+        'email' => ['type' => 'like'],
+        'senha' => ['type' => 'like'],
+        'status' => ['type' => 'value'],
+        'created' => ['type' => 'like'],
+        'modified' => ['type' => 'like'],
+        'updated' => ['type' => 'like'],
+    ];
+
     /**
      * Index method
      *
      * @return void
      */
     public function index() {
-        $this->set('usuarios', $this->paginate($this->Usuarios));
+        $this->loadComponent('Search.Prg');
+        $this->Prg->commonProcess();
+        $options = [
+            'order' => ['Usuarios.nome' => 'ASC'],
+            'conditions' => $this->Prg->parsedParams()
+        ];
+        $this->paginate = $options;
+        $usuarios = $this->paginate($this->Usuarios);
+
+        $usuario = $this->Usuarios->newEntity();
+        $this->set(compact('usuarios', 'usuario'));
         $this->set('_serialize', ['usuarios']);
     }
 

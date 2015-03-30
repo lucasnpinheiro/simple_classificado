@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use App\Model\Entity\Banner;
@@ -10,8 +11,18 @@ use Cake\Validation\Validator;
 /**
  * Banners Model
  */
-class BannersTable extends Table
-{
+class BannersTable extends Table {
+
+    public $filterArgs = [
+        'id' => ['type' => 'value'],
+        'foto' => ['type' => 'like'],
+        'url' => ['type' => 'like'],
+        'status' => ['type' => 'value'],
+        'posicao' => ['type' => 'value'],
+        'created' => ['type' => 'like'],
+        'modified' => ['type' => 'like'],
+        'updated' => ['type' => 'like'],
+    ];
 
     /**
      * Initialize method
@@ -19,12 +30,12 @@ class BannersTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
-    {
+    public function initialize(array $config) {
         $this->table('banners');
         $this->displayField('id');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Search.Searchable');
     }
 
     /**
@@ -33,20 +44,20 @@ class BannersTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
+    public function validationDefault(Validator $validator) {
         $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create')
-            ->requirePresence('foto', 'create')
-            ->notEmpty('foto')
-            ->add('status', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('status', 'create')
-            ->notEmpty('status')
-            ->add('posicao', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('posicao', 'create')
-            ->notEmpty('posicao');
+                ->add('id', 'valid', ['rule' => 'numeric'])
+                ->allowEmpty('id', 'create')
+                ->requirePresence('foto', 'create')
+                ->notEmpty('foto')
+                ->add('status', 'valid', ['rule' => 'numeric'])
+                ->requirePresence('status', 'create')
+                ->notEmpty('status')
+                ->add('posicao', 'valid', ['rule' => 'numeric'])
+                ->requirePresence('posicao', 'create')
+                ->notEmpty('posicao');
 
         return $validator;
     }
+
 }

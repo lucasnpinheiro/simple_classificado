@@ -11,13 +11,33 @@ use App\Controller\AppController;
  */
 class BannersController extends AppController {
 
+    public $presetVars = [
+        'id' => ['type' => 'value'],
+        'foto' => ['type' => 'like'],
+        'url' => ['type' => 'like'],
+        'status' => ['type' => 'value'],
+        'posicao' => ['type' => 'value'],
+        'created' => ['type' => 'like'],
+        'modified' => ['type' => 'like'],
+        'updated' => ['type' => 'like'],
+    ];
+
     /**
      * Index method
      *
      * @return void
      */
     public function index() {
-        $this->set('banners', $this->paginate($this->Banners));
+        $this->loadComponent('Search.Prg');
+        $this->Prg->commonProcess();
+        $options = [
+            'conditions' => $this->Prg->parsedParams()
+        ];
+        $this->paginate = $options;
+        $banners = $this->paginate($this->Banners);
+
+        $banner = $this->Banners->newEntity();
+        $this->set(compact('banners', 'banner'));
         $this->set('_serialize', ['banners']);
     }
 
@@ -105,14 +125,20 @@ class BannersController extends AppController {
     private function upload() {
         if (count($this->request->data['foto']) > 0) {
             $this->loadComponent('Upload');
-            if (!$this->Upload->run($this->request->data['foto'])) {
+            $up = $this->Upload->run($this->request->data['foto']);
+            if ($up === 0) {
                 $this->Flash->error(implode('<br />', $this->Upload->error));
                 return FALSE;
-            } else {
+            } else if ($up === 1) {
                 $this->request->data['foto'] = $this->Upload->filename;
+                return true;
+            } else {
+                unset($this->request->data['foto']);
+                return true;
             }
         } else {
             unset($this->request->data['foto']);
+            return true;
         }
         return true;
     }

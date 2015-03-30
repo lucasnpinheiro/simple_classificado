@@ -5,7 +5,7 @@ msgid "View"
 msgstr "Detalhes"
 
 msgid "List"
-msgstr "Lista"
+msgstr "Consultar"
 
 msgid "Edit"
 msgstr "Editar"
@@ -33,3 +33,6 @@ msgstr "Anterior"
 
 msgid "next"
 msgstr "Proximo"
+
+msgid "Submit"
+msgstr "Salvar"

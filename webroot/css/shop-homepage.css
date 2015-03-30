@@ -53,3 +53,11 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.form-inline .form-control {
+    width: 100%;
+}
+
+.panel-footer .pagination {
+    margin: 0px;
+}

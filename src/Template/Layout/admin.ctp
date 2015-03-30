@@ -98,6 +98,7 @@
 
         <?php echo $this->Html->script('/js/jquery.js') ?>
         <?php echo $this->Html->script('/js/bootstrap.min.js') ?>
+        <?php echo $this->Html->script('/js/admin.js') ?>
         <?php echo $this->fetch('script') ?>
 
     </body>
