@@ -18,7 +18,6 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-
 /**
  * Application Controller
  *
@@ -27,6 +26,17 @@ use Cake\Event\Event;
  *
  * @link http://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
+use Cake\Database\Type;
+
+// Habilita o parseamento de datas localizadas
+Type::build('date')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy');
+Type::build('datetime')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
+Type::build('timestamp')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
+
+// Habilita o parseamento de decimal localizaddos
+Type::build('decimal')->useLocaleParser();
+Type::build('float')->useLocaleParser();
+
 class AppController extends Controller {
 
     public $helpers = [

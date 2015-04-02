@@ -31,9 +31,9 @@ class PinheiroHelper extends Helper {
         return $categorias->find('all')->where(['status' => 1]);
     }
 
-    public function listaBanners($posicao = 1) {
+    public function listaBanners($posicao = 1, $limit = 3) {
         $banners = TableRegistry::get('Banners');
-        return $banners->find('all')->where(['status' => 1, 'posicao' => $posicao]);
+        return $banners->find('all')->where(['status' => 1, 'posicao' => $posicao])->order('RAND()')->limit($limit);
     }
 
     public function moeda($number, array $options = []) {
@@ -53,14 +53,14 @@ class PinheiroHelper extends Helper {
 
     public function status($val = 0) {
         $d = [
-            0 => 'Inativo',
-            1 => 'Ativo',
+            0 => ['type' => 'danger', 'text' => 'Inativo'],
+            1 => ['type' => 'success', 'text' => 'Ativo'],
         ];
-        return $d[$val];
+        return '<span class="label label-' . $d[$val]['type'] . '">' . $d[$val]['text'] . '</span>';
     }
 
     public function posicao($val = 0) {
-        $d = [1 => 'Topo', 2 => 'Rodape', 3 => 'Lateral Esquerda'];
+        $d = [1 => 'Topo', 2 => 'Rodape', 3 => 'Lateral Esquerda', 4 => 'Lateral Direita'];
         return $d[$val];
     }
 

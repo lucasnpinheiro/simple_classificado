@@ -1,5 +1,13 @@
 <div class="panel panel-primary">
-    <div class="panel-heading"><?= __('List') ?></div>
+    <div class="panel-heading">
+        <div class="btn-group btn-group-sm pull-right">
+            <?php
+            echo $this->Html->link(__('List'), ['controller' => $this->request->params['controller'], 'action' => 'index'], ['class' => 'btn btn-info btn-sm']);
+            echo $this->Html->link(__('Add'), ['controller' => $this->request->params['controller'], 'action' => 'add'], ['class' => 'btn btn-success btn-sm']);
+            ?>
+        </div>
+        <h4><?php echo $this->request->params['controller']; ?> <?= __('List') ?></h4>
+    </div>
     <div class="panel-body">
 
         <div class="panel panel-info">
@@ -7,10 +15,9 @@
 
                 <?= $this->Form->create($produto, ['type' => 'file', 'class' => 'form-inline busca']); ?>
                 <?php
-                echo $this->Form->input('Produtos.nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-3'], 'placeholder' => 'Nome', 'required' => false, 'label' => false]);
-                echo $this->Form->input('Produtos.valor', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-3'], 'placeholder' => 'Valor', 'required' => false, 'label' => false]);
-                echo $this->Form->input('Produtos.categoria_id', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-3'], 'placeholder' => 'Categorias', 'required' => false, 'label' => false, 'empty' => 'Categoria', 'options' => $categorias]);
-                echo $this->Form->input('Produtos.status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-3'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
+                echo $this->Form->input('Produtos.nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Nome', 'required' => false, 'label' => false]);
+                echo $this->Form->input('Produtos.categoria_id', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Categorias', 'required' => false, 'label' => false, 'empty' => 'Categoria', 'options' => $categorias]);
+                echo $this->Form->input('Produtos.status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
                 ?>
                 <?= $this->Form->end() ?>
             </div>
@@ -43,8 +50,8 @@
                         <td><?= $this->Pinheiro->status($produto->status) ?></td>
                         <td><?= h($produto->modified) ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $produto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id], ['class' => 'btn btn-info btn-sm']) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $produto->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]) ?>
                         </td>
                     </tr>
 

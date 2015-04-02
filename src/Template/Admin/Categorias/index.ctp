@@ -1,5 +1,13 @@
 <div class="panel panel-primary">
-    <div class="panel-heading"><?= __('List') ?></div>
+    <div class="panel-heading">
+        <div class="btn-group btn-group-sm pull-right">
+            <?php
+            echo $this->Html->link(__('List'), ['controller' => $this->request->params['controller'], 'action' => 'index'], ['class' => 'btn btn-info btn-sm']);
+            echo $this->Html->link(__('Add'), ['controller' => $this->request->params['controller'], 'action' => 'add'], ['class' => 'btn btn-success btn-sm']);
+            ?>
+        </div>
+        <h4><?php echo $this->request->params['controller']; ?> <?= __('List') ?></h4>
+    </div>
     <div class="panel-body">
 
         <div class="panel panel-info">
@@ -32,8 +40,8 @@
                         <td><?= $this->Pinheiro->status($categoria->status) ?></td>
                         <td><?= h($categoria->created) ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $categoria->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $categoria->id], ['confirm' => __('Are you sure you want to delete # {0}?', $categoria->id)]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $categoria->id], ['class' => 'btn btn-info btn-sm']) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $categoria->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $categoria->id)]) ?>
                         </td>
                     </tr>
 

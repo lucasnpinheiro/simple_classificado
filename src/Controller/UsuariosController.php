@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Email\Email;
 
 /**
  * Usuarios Controller
@@ -18,12 +19,27 @@ class UsuariosController extends AppController {
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
+            $this->Flash->error(__('Usuário ou senha invalidos.'));
         }
     }
 
     public function logout() {
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function contato() {
+        if ($this->request->is('post')) {
+
+            $email = new Email('default');
+            if ($email->from(['lucasnpinheiro@gmail.com' => 'Pinheiro Vassouras'])
+                            ->to($this->request->data['Usuario']['email'])
+                            ->subject($this->request->data['Usuario']['nome'])
+                            ->send($this->request->data['Usuario']['assunto'])) {
+                $this->Flash->success('Mensagem enviada com sucesso.');
+            } else {
+                $this->Flash->error('Não foi possivel enviar a sua mensagem.');
+            }
+        }
     }
 
 }

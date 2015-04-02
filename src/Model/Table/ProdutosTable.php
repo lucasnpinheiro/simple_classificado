@@ -56,7 +56,7 @@ class ProdutosTable extends Table {
                 ->requirePresence('nome', 'create')
                 ->notEmpty('nome')
                 ->allowEmpty('descricao')
-                ->add('valor', 'valid', ['rule' => 'numeric'])
+                ->add('valor', 'valid', ['rule' => 'money'])
                 ->allowEmpty('valor')
                 ->allowEmpty('foto')
                 ->add('categoria_id', 'valid', ['rule' => 'numeric'])

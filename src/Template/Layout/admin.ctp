@@ -28,7 +28,7 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
+            <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -46,7 +46,11 @@
                         <li><?php echo $this->Html->link('Produtos', ['prefix' => 'admin', 'controller' => 'Produtos', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Banners', ['prefix' => 'admin', 'controller' => 'Banners', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Usuários', ['prefix' => 'admin', 'controller' => 'Usuarios', 'action' => 'index']); ?></li>
-                        <li><?php echo $this->Html->link('Logout', ['controller' => 'Usuarios', 'action' => 'logout', 'prefix' => false]); ?></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><?php echo $this->Html->link('Frente do Site', '/'); ?></li>
+                        <li><?php echo $this->Html->link('Sair', ['controller' => 'Usuarios', 'action' => 'logout', 'prefix' => false]); ?></li>
+                        <li><img src="<?= $this->Url->build('/img/user.png', true) ?>" alt="<?= $this->Session->read('Auth.User.nome'); ?>" title="<?= $this->Session->read('Auth.User.nome'); ?>"></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -55,40 +59,20 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-xs-12">
-                    <h1><?php echo $this->request->params['controller']; ?></h1>
-                    <hr />
-                </div>
-
-
-                <div class="col-md-3">
-                    <div class="list-group">
-                        <?php
-                        echo $this->Html->link(__('List'), ['controller' => $this->request->params['controller'], 'action' => 'index'], ['class' => 'list-group-item']);
-                        echo $this->Html->link(__('Add'), ['controller' => $this->request->params['controller'], 'action' => 'add'], ['class' => 'list-group-item']);
-                        ?>
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <div class="row">
-
-                        <?php echo $this->Flash->render() ?>
-                        <?php echo $this->fetch('content') ?>
-                    </div>
-
+        <div class="container-fluid">
+            <div class="col-xs-12">
+                <div class="row">
+                    <?php echo $this->Flash->render() ?>
+                    <?php echo $this->fetch('content') ?>
                 </div>
 
             </div>
 
         </div>
+
         <!-- /.container -->
 
-        <div class="container">
+        <div class="container-fluid">
 
             <hr>
             <div class="text-right">Desenvolvido por <?= $this->Html->link('Agência Voxel', 'http://agenciavoxel.com.br') ?></div>

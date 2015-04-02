@@ -42,7 +42,16 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><?php echo $this->Html->link('Produtos', '/'); ?></li>
+                        <li class="dropdown">
+                            <?php echo $this->Html->link('Produtos <span class="caret"></span>', ['controller' => 'produtos', 'action' => 'index'], ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
+                            <ul class="dropdown-menu" role="menu">
+                                <?php
+                                foreach ($this->Pinheiro->categorias() as $key => $value) {
+                                    echo '<li>' . $this->Html->link($value->nome, ['controller' => 'produtos', 'action' => 'index', 'categoria' => $value->id]) . '</li>';
+                                }
+                                ?>
+                            </ul>
+                        </li>
                         <li><?php echo $this->Html->link('Contato', '/contatos'); ?></li>
                         <li><?php echo $this->Html->link('Login', array('controller' => 'Usuarios', 'action' => 'login')); ?></li>
                     </ul>
@@ -53,96 +62,259 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container">
+        <div class="container-fluid">
+            <div class="col-xs-12 carousel-holder">
+                <?php
+                $_banners_topo = $this->Pinheiro->listaBanners(1);
+                if (count($_banners_topo) > 0) {
+                    ?>
+                    <div class="col-md-12">
+                        <div id="banner_topo" class="carousel slide" data-ride="carousel">
 
-            <div class="row">
-
-
-
-                <div class="col-md-3">
-                    <p class="lead">Categorias</p>
-                    <div class="list-group">
-                        <?php
-                        echo $this->Html->link('Todos', ['controller' => 'produtos', 'action' => 'index'], ['class' => 'list-group-item']);
-                        foreach ($this->Pinheiro->categorias() as $key => $value) {
-                            echo $this->Html->link($value->nome, ['controller' => 'produtos', 'action' => 'index', 'categoria' => $value->id], ['class' => 'list-group-item']);
-                        }
-                        ?>
-                    </div>
-                    <div class="row carousel-holder hidden-xs hidden-sm">
-
-                        <?php
-                        $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(3);
-                        if (count($_banners_lateral_esquerda) > 0) {
-                            ?>
-                            <div class="col-md-12">
-                                <div id="banner_topo" class="carousel slide" data-ride="carousel">
-
-                                    <div class="carousel-inner">
-                                        <?php
-                                        foreach ($_banners_lateral_esquerda as $key => $value) {
-                                            ?>
-                                            <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
-                                                <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
-                                            </div>
-                                            <?php
-                                        }
-                                        ?>
+                            <div class="carousel-inner">
+                                <?php
+                                foreach ($_banners_topo as $key => $value) {
+                                    ?>
+                                    <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                        <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
                                     </div>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="col-md-2">
+                <div class="row carousel-holder hidden-xs hidden-sm">
+
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(3);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
-                            <?php
-                        }
-                        ?>
-
-
-
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="row carousel-holder">
-
-                            <?php
-                            $_banners_topo = $this->Pinheiro->listaBanners(1);
-                            if (count($_banners_topo) > 0) {
-                                ?>
-                                <div class="col-md-12">
-                                    <div id="banner_topo" class="carousel slide" data-ride="carousel">
-
-                                        <div class="carousel-inner">
-                                            <?php
-                                            foreach ($_banners_topo as $key => $value) {
-                                                ?>
-                                                <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
-                                                    <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
-                                                </div>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                            }
-                            ?>
-
-
-
                         </div>
-                        <?php echo $this->Flash->render() ?>
-                        <?php echo $this->fetch('content') ?>
-                    </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="row carousel-holder hidden-xs hidden-sm">
 
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(3);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="row carousel-holder hidden-xs hidden-sm">
+
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(3);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="row carousel-holder hidden-xs hidden-sm">
+
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(3);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="row">
+
+                    <?php echo $this->Flash->render() ?>
+                    <?php echo $this->fetch('content') ?>
                 </div>
 
             </div>
+            <div class="col-md-2">
+                <div class="row carousel-holder hidden-xs hidden-sm">
+
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(4);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="row carousel-holder hidden-xs hidden-sm">
+
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(4);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="row carousel-holder hidden-xs hidden-sm">
+
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(4);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="row carousel-holder hidden-xs hidden-sm">
+
+                    <?php
+                    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(4);
+                    if (count($_banners_lateral_esquerda) > 0) {
+                        ?>
+                        <div class="col-md-12">
+                            <div id="banner_topo" class="carousel slide" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <?php
+                                    foreach ($_banners_lateral_esquerda as $key => $value) {
+                                        ?>
+                                        <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                                            <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
 
         </div>
+
         <!-- /.container -->
 
-        <div class="container">
+        <div class="container-fluid">
 
             <hr>
             <div class="row carousel-holder">

@@ -25,8 +25,12 @@ class ProdutosController extends AppController {
         ];
         if (isset($this->request->query['categoria']) and ! empty($this->request->query['categoria'])) {
             $options['conditions']['Produtos.categoria_id'] = $this->request->query['categoria'];
+            $this->loadModel('Categorias');
+            $find = $this->Categorias->get($this->request->query['categoria']);
+            $this->set('produtos_titulo', $find->nome);
         } else {
             $options['order'] = ['rand()'];
+            $this->set('produtos_titulo', 'Produtos');
         }
 
         $this->paginate = $options;
