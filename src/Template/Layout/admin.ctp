@@ -13,7 +13,7 @@
         <?php echo $this->fetch('meta') ?>
         <?php echo $this->Html->css('/css/bootstrap.min.css') ?>
         <?php echo $this->Html->css('/css/shop-homepage.css') ?>
-        <?php echo $this->fetch('css') ?>
+
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,7 +21,9 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
+        <script>
+            var cms.base_url = "<?php echo \Cake\Routing\Router::url('/', true); ?>" 
+        </script>
     </head>
 
     <body>
@@ -45,12 +47,29 @@
                         <li><?php echo $this->Html->link('Categorias', ['prefix' => 'admin', 'controller' => 'Categorias', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Produtos', ['prefix' => 'admin', 'controller' => 'Produtos', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Banners', ['prefix' => 'admin', 'controller' => 'Banners', 'action' => 'index']); ?></li>
+                        <li class="dropdown">
+                            <?php echo $this->Html->link('Blog <span class="caret"></span>', '#', ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
+                            <ul class="dropdown-menu" role="menu">
+                                <?php
+                                echo '<li>' . $this->Html->link('Postagens', ['plugin' => 'Blogs', 'controller' => 'BlogsPosts', 'action' => 'index']) . '</li>';
+                                echo '<li>' . $this->Html->link('Painas', ['plugin' => 'Blogs', 'controller' => 'BlogsPages', 'action' => 'index']) . '</li>';
+                                ?>
+                            </ul>
+                        </li>
                         <li><?php echo $this->Html->link('Usuários', ['prefix' => 'admin', 'controller' => 'Usuarios', 'action' => 'index']); ?></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><?php echo $this->Html->link('Frente do Site', '/'); ?></li>
-                        <li><?php echo $this->Html->link('Sair', ['controller' => 'Usuarios', 'action' => 'logout', 'prefix' => false]); ?></li>
-                        <li><img src="<?= $this->Url->build('/img/user.png', true) ?>" alt="<?= $this->Session->read('Auth.User.nome'); ?>" title="<?= $this->Session->read('Auth.User.nome'); ?>"></li>
+                        <li class="dropdown">
+                            <?php echo $this->Html->link($this->Session->read('Auth.User.nome') . ' <span class="caret"></span>', '#', ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
+                            <ul class="dropdown-menu" role="menu">
+                                <?php
+                                echo '<li>' . $this->Html->link('Configurações', ['plugin' => 'Configuracoes', 'controller' => 'Configuracoes', 'action' => 'index']) . '</li>';
+                                echo '<li>' . $this->Html->link('Perfil', ['plugin' => false, 'controller' => 'Usuarios', 'action' => 'edit', $this->Session->read('Auth.User.id')]) . '</li>';
+                                echo '<li>' . $this->Html->link('Sair', ['plugin' => false, 'controller' => 'Usuarios', 'action' => 'logout', 'prefix' => false]) . '</li>';
+                                ?>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -83,6 +102,7 @@
         <?php echo $this->Html->script('/js/jquery.js') ?>
         <?php echo $this->Html->script('/js/bootstrap.min.js') ?>
         <?php echo $this->Html->script('/js/admin.js') ?>
+        <?php echo $this->fetch('css') ?>
         <?php echo $this->fetch('script') ?>
 
     </body>

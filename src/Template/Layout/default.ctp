@@ -21,7 +21,11 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
+        <script type="text/javascript">
+            var cms = {
+                url: "<?php echo \Cake\Routing\Router::url('/', true); ?>"
+            };
+        </script>
     </head>
 
     <body>
@@ -53,8 +57,15 @@
                             </ul>
                         </li>
                         <li><?php echo $this->Html->link('Contato', '/contatos'); ?></li>
-                        <li><?php echo $this->Html->link('Login', array('controller' => 'Usuarios', 'action' => 'login')); ?></li>
+                        <li><?php echo $this->Html->link('Blog', ['plugin' => 'Blogs', 'controller' => 'BlogsPosts', 'action' => 'index']); ?></li>
+
                     </ul>
+                    <?php if ($this->Session->read('Cliente.id')) { ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Olá <?php echo $this->Session->read('Cliente.nome'); ?></a></li>
+                            <li><?php echo $this->Html->link('Logout', ['controller' => 'Clientes', 'action' => 'logout']); ?></li>
+                        </ul>
+                    <?php } ?>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -347,13 +358,15 @@
 
             </div>
             <hr>
-            <div class="text-right">Desenvolvido por <?= $this->Html->link('Agência Voxel', 'http://agenciavoxel.com.br') ?></div>
+            <div class="text-left col-xs-6"><?php echo $this->Html->link('Área Administrativa', array('controller' => 'Usuarios', 'action' => 'login')); ?></div>
+            <div class="text-right col-xs-6">Desenvolvido por <?= $this->Html->link('Agência Voxel', 'http://agenciavoxel.com.br') ?></div>
 
         </div>
         <!-- /.container -->
 
         <?php echo $this->Html->script('/js/jquery.js') ?>
         <?php echo $this->Html->script('/js/bootstrap.min.js') ?>
+        <?php echo $this->Html->script('/js/funcoes.js') ?>
         <?php echo $this->fetch('script') ?>
 
     </body>

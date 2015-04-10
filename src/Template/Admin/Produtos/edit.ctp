@@ -13,7 +13,7 @@
         <?php
         echo $this->Form->input('id');
         echo $this->Form->input('nome');
-        echo $this->Form->input('descricao');
+        echo $this->Form->editor('descricao');
         echo $this->Form->input('valor', ['type' => 'text', 'class' => 'moeda']);
         echo $this->Form->input('categoria_id', ['options' => $categorias]);
         echo $this->Form->input('status', ['options' => ['0' => 'Inativo', '1' => 'Ativo']]);

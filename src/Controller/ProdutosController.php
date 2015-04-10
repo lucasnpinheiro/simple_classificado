@@ -46,11 +46,14 @@ class ProdutosController extends AppController {
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function view($id = null) {
+        $this->loadModel('PedidosProdutos');
+        $pedidosProduto = $this->PedidosProdutos->newEntity();
         $produto = $this->Produtos->get($id, [
             'contain' => ['Categorias']
         ]);
         $this->set('produto', $produto);
-        $this->set('_serialize', ['produto']);
+        $this->set('pedidosProduto', $pedidosProduto);
+        $this->set('_serialize', ['produto', 'pedidosProduto']);
     }
 
 }

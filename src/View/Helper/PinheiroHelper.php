@@ -20,9 +20,23 @@ use Cake\Utility\Hash;
 
 class PinheiroHelper extends Helper {
 
-    public $helpers = array('Html', 'Number');
+    public $helpers = [
+        'Html' => [
+            'className' => 'MyHtml'
+        ],
+        'Form' => [
+            'className' => 'MyForm'
+        ],
+        'Paginator' => [
+            'className' => 'MyPaginator'
+        ],
+        'Modal' => [
+            'className' => 'MyModal'
+        ],
+        'Number'
+    ];
 
-    public function __construct(View $View, $settings = array()) {
+    public function __construct(View $View, $settings = []) {
         parent::__construct($View, $settings);
     }
 
@@ -36,7 +50,7 @@ class PinheiroHelper extends Helper {
         return $banners->find('all')->where(['status' => 1, 'posicao' => $posicao])->order('RAND()')->limit($limit);
     }
 
-    public function moeda($number, array $options = []) {
+    public function moeda($number, $options = []) {
         $default = ['before' => 'R$ ', 'precision' => 2, 'places' => 2, 'locale' => 'pt_BR'];
         $options = Hash::merge($default, $options);
         return $this->Number->format($number, $options);
@@ -63,5 +77,6 @@ class PinheiroHelper extends Helper {
         $d = [1 => 'Topo', 2 => 'Rodape', 3 => 'Lateral Esquerda', 4 => 'Lateral Direita'];
         return $d[$val];
     }
+
 
 }
