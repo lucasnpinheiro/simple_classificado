@@ -24,9 +24,11 @@ class MyFormHelper extends BootstrapFormHelper {
             jQuery('document').ready(function(){
                 jQuery('textarea.editor_redactor').redactor({
                     buttonSource: true,
-                    imageUpload: '".\Cake\Routing\Router::url('/midias/upload', true)."',
-                    fileUpload: '".\Cake\Routing\Router::url('/midias/upload', true)."',
-                    plugins: ['table', 'video']
+                    lang: 'pt_br',
+                    imageUpload: '" . \Cake\Routing\Router::url('/midias/upload', true) . "',
+                    fileUpload: '" . \Cake\Routing\Router::url('/midias/upload', true) . "',
+                    imageManagerJson: '" . \Cake\Routing\Router::url('/midias/lista', true) . "',
+                    plugins: ['table', 'video', 'imagemanager', 'filemanager', 'fontsize', 'fontfamily', 'fontcolor']
                 });  
             });
         ", ['block' => 'script']);

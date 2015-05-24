@@ -4,7 +4,7 @@
         <?php echo $this->Flash->render('auth') ?>
         <?php echo $this->Form->create() ?>
         <?php echo $this->Form->input('email') ?>
-        <?php echo $this->Form->input('senha') ?>
+        <?php echo $this->Form->input('senha', [ 'type' => 'password']) ?>
         <?php echo $this->Form->button(__('Login')); ?>
         <?php echo $this->Form->end() ?>
     </div>

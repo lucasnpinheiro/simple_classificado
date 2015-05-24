@@ -21,8 +21,10 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script>
-            var cms.base_url = "<?php echo \Cake\Routing\Router::url('/', true); ?>" 
+        <script type="text/javascript">
+            var cms = {
+                url: "<?php echo \Cake\Routing\Router::url('/', true); ?>"
+            };
         </script>
     </head>
 
@@ -61,11 +63,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><?php echo $this->Html->link('Frente do Site', '/'); ?></li>
                         <li class="dropdown">
-                            <?php echo $this->Html->link($this->Session->read('Auth.User.nome') . ' <span class="caret"></span>', '#', ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
+                            <?php echo $this->Html->link($this->request->session()->read('Auth.User.nome') . ' <span class="caret"></span>', '#', ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
                             <ul class="dropdown-menu" role="menu">
                                 <?php
                                 echo '<li>' . $this->Html->link('Configurações', ['plugin' => 'Configuracoes', 'controller' => 'Configuracoes', 'action' => 'index']) . '</li>';
-                                echo '<li>' . $this->Html->link('Perfil', ['plugin' => false, 'controller' => 'Usuarios', 'action' => 'edit', $this->Session->read('Auth.User.id')]) . '</li>';
+                                echo '<li>' . $this->Html->link('Perfil', ['plugin' => false, 'controller' => 'Usuarios', 'action' => 'edit', $this->request->session()->read('Auth.User.id')]) . '</li>';
                                 echo '<li>' . $this->Html->link('Sair', ['plugin' => false, 'controller' => 'Usuarios', 'action' => 'logout', 'prefix' => false]) . '</li>';
                                 ?>
                             </ul>

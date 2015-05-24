@@ -15,7 +15,7 @@
         "psy/psysh": "@stable",
         "cakephp/debug_kit": "~3.0",
         "cakephp/bake": "~1.0",
-        "cakedc/search": "3.0.x-dev",
+        "cakedc/search": "* 3.0.x-dev",
         "holt59/cakephp3-bootstrap3-helpers": "dev-master",
         "faisalman/simple-excel-php": "v0.3.15"
     },

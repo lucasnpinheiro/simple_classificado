@@ -60,9 +60,9 @@
                         <li><?php echo $this->Html->link('Blog', ['plugin' => 'Blogs', 'controller' => 'BlogsPosts', 'action' => 'index']); ?></li>
 
                     </ul>
-                    <?php if ($this->Session->read('Cliente.id')) { ?>
+                    <?php if ($this->request->session()->read('Cliente.id')) { ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Olá <?php echo $this->Session->read('Cliente.nome'); ?></a></li>
+                            <li><a href="#">Olá <?php echo $this->request->session()->read('Cliente.nome'); ?></a></li>
                             <li><?php echo $this->Html->link('Logout', ['controller' => 'Clientes', 'action' => 'logout']); ?></li>
                         </ul>
                     <?php } ?>
