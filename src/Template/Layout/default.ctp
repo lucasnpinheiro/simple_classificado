@@ -83,7 +83,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Pinheiro Vassouras</a>
+                        <a class="navbar-brand" href="<?= $this->Url->build('/', true) ?>">Pinheiro Vassouras</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -93,7 +93,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <?php
                                     foreach ($this->Pinheiro->categorias() as $key => $value) {
-                                        echo '<li>' . $this->Html->link($value->nome, ['controller' => 'produtos', 'action' => 'index', 'categoria' => $value->id]) . '</li>';
+                                        echo '<li>' . $this->Html->link($value->nome, ['controller' => 'produtos', 'action' => 'categoria', 'categoria' => $value->id]) . '</li>';
                                     }
                                     ?>
                                 </ul>

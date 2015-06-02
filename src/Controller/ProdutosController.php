@@ -20,18 +20,31 @@ class ProdutosController extends AppController {
         $options = [
             'contain' => ['Categorias'],
             'conditions' => ['Produtos.status' => 1],
+            'group' => 'Produtos.categoria_id',
+            'order' => ['rand()']
+        ];
+        $this->set('produtos_titulo', 'Categorias');
+        $this->paginate = $options;
+        $this->set('produtos', $this->paginate($this->Produtos));
+        $this->set('_serialize', ['produtos']);
+    }
+
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function categoria() {
+        $options = [
+            'contain' => ['Categorias'],
+            'conditions' => ['Produtos.status' => 1],
             'limit' => 12,
             'order' => ['nome' => 'DESC']
         ];
-        if (isset($this->request->query['categoria']) and ! empty($this->request->query['categoria'])) {
-            $options['conditions']['Produtos.categoria_id'] = $this->request->query['categoria'];
-            $this->loadModel('Categorias');
-            $find = $this->Categorias->get($this->request->query['categoria']);
-            $this->set('produtos_titulo', $find->nome);
-        } else {
-            $options['order'] = ['rand()'];
-            $this->set('produtos_titulo', 'Produtos');
-        }
+        $options['conditions']['Produtos.categoria_id'] = $this->request->query['categoria'];
+        $this->loadModel('Categorias');
+        $find = $this->Categorias->get($this->request->query['categoria']);
+        $this->set('produtos_titulo', $find->nome);
 
         $this->paginate = $options;
         $this->set('produtos', $this->paginate($this->Produtos));
