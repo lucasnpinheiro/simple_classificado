@@ -58,8 +58,8 @@ class PedidosController extends AppController
                 $this->Flash->error('The pedido could not be saved. Please, try again.');
             }
         }
-        $clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
-        $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
+        $clientes = $this->Pedidos->Clientes->find('list');
+        $produtos = $this->Pedidos->Produtos->find('list');
         $this->set(compact('pedido', 'clientes', 'produtos'));
         $this->set('_serialize', ['pedido']);
     }
@@ -85,8 +85,8 @@ class PedidosController extends AppController
                 $this->Flash->error('The pedido could not be saved. Please, try again.');
             }
         }
-        $clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
-        $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
+        $clientes = $this->Pedidos->Clientes->find('list');
+        $produtos = $this->Pedidos->Produtos->find('list');
         $this->set(compact('pedido', 'clientes', 'produtos'));
         $this->set('_serialize', ['pedido']);
     }

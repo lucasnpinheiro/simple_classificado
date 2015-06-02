@@ -30,8 +30,8 @@ class UsuariosController extends AppController {
     public function contato() {
         if ($this->request->is('post')) {
 
-            $email = new Email('default');
-            if ($email->from(['lucasnpinheiro@gmail.com' => 'Pinheiro Vassouras'])
+            $email = new Email('System');
+            if ($email->from([\Cake\Core\Configure::read('Email.Email') => \Cake\Core\Configure::read('Email.Nome')])
                             ->to($this->request->data['Usuario']['email'])
                             ->subject($this->request->data['Usuario']['nome'])
                             ->send($this->request->data['Usuario']['assunto'])) {

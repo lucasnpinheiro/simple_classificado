@@ -194,5 +194,7 @@ DispatcherFactory::add('ControllerFactory');
 
 
 // Meus Plugins
+Plugin::load('Configuracoes', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('Blogs', ['bootstrap' => false, 'routes' => true]);
-Plugin::load('Configuracoes', ['bootstrap' => false, 'routes' => true]);
+
+
