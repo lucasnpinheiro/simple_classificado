@@ -116,4 +116,33 @@ class AppController extends Controller {
         }
     }
 
+    public function upload($width = null, $height = null) {
+        if (count($this->request->data['foto']) > 0) {
+            $this->loadComponent('Upload');
+            $up = $this->Upload->run($this->request->data['foto']);
+            if ($up === 0) {
+                $this->Flash->error(implode('<br />', $this->Upload->error));
+                return FALSE;
+            } else if ($up === 1) {
+                if (is_null($height)) {
+                    $info = getimagesize($this->Upload->destination . $this->Upload->filename);
+                    $__width = $info[0] / $width;
+                    $__height = $info[1] / $__width;
+                    $height = $__height;
+                }
+                $this->loadComponent('SimpleImage');
+                $file = $this->SimpleImage->init($this->Upload->destination . $this->Upload->filename)->thumbnail($width, $height)->save($this->Upload->destination . $this->Upload->filename);
+                $this->request->data['foto'] = $this->Upload->filename;
+                return true;
+            } else {
+                unset($this->request->data['foto']);
+                return true;
+            }
+        } else {
+            unset($this->request->data['foto']);
+            return true;
+        }
+        return true;
+    }
+
 }

@@ -21,6 +21,7 @@ class BannersController extends AppController {
         'modified' => ['type' => 'like'],
         'updated' => ['type' => 'like'],
     ];
+    public $bannerDimmesion = ['1' => [1024, 200], '2' => [1024, 200], '4' => [120, 60]];
 
     /**
      * Index method
@@ -29,7 +30,7 @@ class BannersController extends AppController {
      */
     public function index() {
         $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess();
+        $this->Prg->commonProcess($this->name, ['action' => 'index']);
         $options = [
             'conditions' => $this->Prg->parsedParams()
         ];
@@ -64,7 +65,8 @@ class BannersController extends AppController {
     public function add() {
         $banner = $this->Banners->newEntity();
         if ($this->request->is('post')) {
-            if ($this->upload()) {
+            $p = $this->bannerDimmesion[$this->request->data['posicao']];
+            if ($this->upload($p[0], $p[1])) {
                 $banner = $this->Banners->patchEntity($banner, $this->request->data);
                 if ($this->Banners->save($banner)) {
                     $this->Flash->success('The banner has been saved.');
@@ -90,7 +92,8 @@ class BannersController extends AppController {
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            if ($this->upload()) {
+            $p = $this->bannerDimmesion[$this->request->data['posicao']];
+            if ($this->upload($p[0], $p[1])) {
                 $banner = $this->Banners->patchEntity($banner, $this->request->data);
                 if ($this->Banners->save($banner)) {
                     $this->Flash->success('The banner has been saved.');
@@ -120,27 +123,6 @@ class BannersController extends AppController {
             $this->Flash->error('The banner could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);
-    }
-
-    private function upload() {
-        if (count($this->request->data['foto']) > 0) {
-            $this->loadComponent('Upload');
-            $up = $this->Upload->run($this->request->data['foto']);
-            if ($up === 0) {
-                $this->Flash->error(implode('<br />', $this->Upload->error));
-                return FALSE;
-            } else if ($up === 1) {
-                $this->request->data['foto'] = $this->Upload->filename;
-                return true;
-            } else {
-                unset($this->request->data['foto']);
-                return true;
-            }
-        } else {
-            unset($this->request->data['foto']);
-            return true;
-        }
-        return true;
     }
 
 }

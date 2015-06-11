@@ -31,11 +31,10 @@ class ProdutosController extends AppController {
      */
     public function index() {
         $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess();
+        $this->Prg->commonProcess($this->name, ['action' => 'index']);
         $options = [
             'contain' => ['Categorias'],
             'order' => ['Produtos.modified' => 'DESC'],
-            //'searchable' => $this->Prg->parsedParams(),
             'conditions' => $this->Prg->parsedParams()
         ];
         $this->paginate = $options;
@@ -70,7 +69,7 @@ class ProdutosController extends AppController {
     public function add() {
         $produto = $this->Produtos->newEntity();
         if ($this->request->is('post')) {
-            if ($this->upload()) {
+            if ($this->upload(800)) {
                 $produto = $this->Produtos->patchEntity($produto, $this->request->data);
                 if ($this->Produtos->save($produto)) {
                     $this->Flash->success('The produto has been saved.');
@@ -97,7 +96,7 @@ class ProdutosController extends AppController {
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            if ($this->upload()) {
+            if ($this->upload(800)) {
                 $produto = $this->Produtos->patchEntity($produto, $this->request->data);
                 if ($this->Produtos->save($produto)) {
                     $this->Flash->success('The produto has been saved.');
@@ -128,27 +127,6 @@ class ProdutosController extends AppController {
             $this->Flash->error('The produto could not be deleted. Please, try again.');
         }
         return $this->redirect(['action' => 'index']);
-    }
-
-    private function upload() {
-        if (count($this->request->data['foto']) > 0) {
-            $this->loadComponent('Upload');
-            $up = $this->Upload->run($this->request->data['foto']);
-            if ($up === 0) {
-                $this->Flash->error(implode('<br />', $this->Upload->error));
-                return FALSE;
-            } else if ($up === 1) {
-                $this->request->data['foto'] = $this->Upload->filename;
-                return true;
-            } else {
-                unset($this->request->data['foto']);
-                return true;
-            }
-        } else {
-            unset($this->request->data['foto']);
-            return true;
-        }
-        return true;
     }
 
 }

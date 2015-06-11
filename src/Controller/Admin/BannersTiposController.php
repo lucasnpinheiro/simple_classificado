@@ -30,7 +30,7 @@ class BannersTiposController extends AppController {
      */
     public function index() {
         $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess();
+        $this->Prg->commonProcess($this->name,['action'=>'index']);
         $options = [
             'conditions' => $this->Prg->parsedParams()
         ];

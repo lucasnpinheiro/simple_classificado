@@ -8,16 +8,21 @@
         </div>
         <h4><?php echo $this->request->params['controller']; ?> <?= __('Edit') ?></h4>
     </div>
-    <?= $this->Form->create($categoria); ?>
+    <?= $this->Form->create($categoria, ['type' => 'file']); ?>
     <div class="panel-body">
         <?php
         echo $this->Form->input('id');
         echo $this->Form->input('nome');
         echo $this->Form->input('status', ['options' => ['0' => 'Inativo', '1' => 'Ativo']]);
+        if ($categoria->foto) {
+            echo $this->Html->image('/files/' . $categoria->foto, ['alt' => $categoria->nome, 'style' => 'max-width: 250px;']) . '<br />';
+        }
+        echo $this->Form->label('foto');
+        echo $this->Form->file('foto', ['type' => 'file']);
         ?>
     </div>
     <div class="panel-footer text-right">
-        <?= $this->Form->button(__('Submit'),['icon'=>'glyphicon glyphicon-floppy-disk']) ?>&nbsp;
+        <?= $this->Form->button(__('Submit'), ['icon' => 'glyphicon glyphicon-floppy-disk']) ?>&nbsp;
     </div>
     <?= $this->Form->end() ?>
 

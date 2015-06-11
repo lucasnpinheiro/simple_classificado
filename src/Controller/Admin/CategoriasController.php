@@ -27,7 +27,7 @@ class CategoriasController extends AppController {
      */
     public function index() {
         $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess();
+        $this->Prg->commonProcess($this->name, ['action' => 'index']);
         $options = [
             'order' => ['Categorias.nome' => 'ASC'],
             'conditions' => $this->Prg->parsedParams()
@@ -63,12 +63,14 @@ class CategoriasController extends AppController {
     public function add() {
         $categoria = $this->Categorias->newEntity();
         if ($this->request->is('post')) {
-            $categoria = $this->Categorias->patchEntity($categoria, $this->request->data);
-            if ($this->Categorias->save($categoria)) {
-                $this->Flash->success('The categoria has been saved.');
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error('The categoria could not be saved. Please, try again.');
+            if ($this->upload(250)) {
+                $categoria = $this->Categorias->patchEntity($categoria, $this->request->data);
+                if ($this->Categorias->save($categoria)) {
+                    $this->Flash->success('The categoria has been saved.');
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error('The categoria could not be saved. Please, try again.');
+                }
             }
         }
         $this->set(compact('categoria'));
@@ -87,12 +89,14 @@ class CategoriasController extends AppController {
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $categoria = $this->Categorias->patchEntity($categoria, $this->request->data);
-            if ($this->Categorias->save($categoria)) {
-                $this->Flash->success('The categoria has been saved.');
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error('The categoria could not be saved. Please, try again.');
+            if ($this->upload(250)) {
+                $categoria = $this->Categorias->patchEntity($categoria, $this->request->data);
+                if ($this->Categorias->save($categoria)) {
+                    $this->Flash->success('The categoria has been saved.');
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error('The categoria could not be saved. Please, try again.');
+                }
             }
         }
         $this->set(compact('categoria'));

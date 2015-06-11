@@ -36,3 +36,6 @@ msgstr "Proximo"
 
 msgid "Submit"
 msgstr "Salvar"
+
+msgid "Choose File"
+msgstr "Selecionar foto"

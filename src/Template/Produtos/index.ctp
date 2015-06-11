@@ -1,7 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading"><?php echo $produtos_titulo; ?></div>
     <div class="panel-body">
-
         <?php
         if (count($produtos) > 0) {
             foreach ($produtos as $produto):
@@ -11,7 +10,7 @@
                     <div class="thumbnail" style="height: 150px; margin: 2px; border: 1px solid #dfdfdf;">
 
                         <div class="col-xs-12 col-md-4 thumbnail" style="position: relative; height: 120px;">
-                            <img style="position: absolute; max-height: 120px; vertical-align: middle;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($produto->foto), true) ?>" alt="<?= ($produto->nome); ?>">
+                            <img style="position: absolute; max-height: 120px; vertical-align: middle;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($produto->categoria->foto), true) ?>" alt="<?= ($produto->categoria->nome); ?>">
                         </div>
                         <div class="col-xs-12 col-md-8">
                             <h3><?= h($produto->categoria->nome); ?></h3>

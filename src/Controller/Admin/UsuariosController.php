@@ -29,7 +29,7 @@ class UsuariosController extends AppController {
      */
     public function index() {
         $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess();
+        $this->Prg->commonProcess($this->name,['action'=>'index']);
         $options = [
             'order' => ['Usuarios.nome' => 'ASC'],
             'conditions' => $this->Prg->parsedParams()

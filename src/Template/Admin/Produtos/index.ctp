@@ -15,9 +15,9 @@
 
                 <?= $this->Form->create($produto, ['type' => 'file', 'class' => 'form-inline busca']); ?>
                 <?php
-                echo $this->Form->input('Produtos.nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Nome', 'required' => false, 'label' => false]);
-                echo $this->Form->input('Produtos.categoria_id', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Categorias', 'required' => false, 'label' => false, 'empty' => 'Categoria', 'options' => $categorias]);
-                echo $this->Form->input('Produtos.status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
+                echo $this->Form->input('nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Nome', 'required' => false, 'label' => false]);
+                echo $this->Form->input('categoria_id', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Categorias', 'required' => false, 'label' => false, 'empty' => 'Categoria', 'options' => $categorias]);
+                echo $this->Form->input('status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
                 ?>
                 <?= $this->Form->end() ?>
             </div>

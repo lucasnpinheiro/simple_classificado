@@ -15,8 +15,8 @@
 
                 <?= $this->Form->create($bannersTipo, ['type' => 'file', 'class' => 'form-inline busca']); ?>
                 <?php
-                echo $this->Form->input('BannersTipo.nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-8'], 'placeholder' => 'Posição', 'required' => false, 'label' => false, 'empty' => 'Posição', 'options' => ['1' => 'Topo', '2' => 'Rodape', '3' => 'Lateral Esquerda']]);
-                echo $this->Form->input('BannersTipo.status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
+                echo $this->Form->input('nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-8'], 'placeholder' => 'Posição', 'required' => false, 'label' => false, 'empty' => 'Posição', 'options' => ['1' => 'Topo', '2' => 'Rodape', '3' => 'Lateral Esquerda']]);
+                echo $this->Form->input('status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
                 ?>
                 <?= $this->Form->end() ?>
             </div>

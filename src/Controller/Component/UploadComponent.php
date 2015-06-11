@@ -36,12 +36,12 @@ class UploadComponent extends Component {
      * left empty it will accept any
      */
     public $error = [];
-    private $file_types = [];
+    public $file_types = [];
     public $filename = null;
-    private $destination = null;
-    private $max_size = null;
-    private $content_only = false;
-    private $create_destination = true;
+    public $destination = null;
+    public $max_size = null;
+    public $content_only = false;
+    public $create_destination = true;
 
     /**
      * component constructor - set up local vars based on settings array in controller

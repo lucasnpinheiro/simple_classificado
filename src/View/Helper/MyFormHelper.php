@@ -17,6 +17,11 @@ use Bootstrap3\View\Helper\BootstrapFormHelper;
 
 class MyFormHelper extends BootstrapFormHelper {
 
+    public function __construct(\Cake\View\View $view, array $config = []) {
+        $config['useCustomFileInput'] = true;
+        parent::__construct($view, $config);
+    }
+
     public function editor($fieldName, array $options = array()) {
         $this->Html->css('/css/redactor.css', ['block' => 'css']);
         $this->Html->script('/js/redactor.js', ['block' => 'script']);

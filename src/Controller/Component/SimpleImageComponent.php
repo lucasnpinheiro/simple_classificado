@@ -27,7 +27,7 @@ class SimpleImageComponent extends Component {
      *
      */
     public $quality = 70;
-    protected $image, $filename, $original_info, $width, $height, $imagestring;
+    public $image, $filename, $original_info, $width, $height, $imagestring;
 
     /**
      * Create instance and load an image, or create an image from scratch
@@ -43,6 +43,10 @@ class SimpleImageComponent extends Component {
      * @throws Exception
      *
      */
+    public function initialize(array $config) {
+        parent::initialize($config);
+    }
+
     public function init($filename = null, $width = null, $height = null, $color = null) {
         if ($filename) {
             $this->load($filename);
@@ -56,11 +60,11 @@ class SimpleImageComponent extends Component {
      * Destroy image resource
      *
      */
-    public function __destruct() {
-        if (get_resource_type($this->image) === 'gd') {
-            imagedestroy($this->image);
-        }
-    }
+    /* public function __destruct() {
+      if (get_resource_type($this->image) === 'gd') {
+      imagedestroy($this->image);
+      }
+      } */
 
     /**
      * Adaptive resize
@@ -848,6 +852,7 @@ class SimpleImageComponent extends Component {
         // Determine quality, filename, and format
         $quality = $quality ? : $this->quality;
         $filename = $filename ? : $this->filename;
+        $this->original_info['filename'] = $filename;
         if (!$format) {
             $format = $this->file_ext($filename) ? : $this->original_info['format'];
         }
@@ -1057,7 +1062,6 @@ class SimpleImageComponent extends Component {
         //gather meta data
         if (empty($this->imagestring)) {
             $info = getimagesize($this->filename);
-
             switch ($info['mime']) {
                 case 'image/gif':
                     $this->image = imagecreatefromgif($this->filename);

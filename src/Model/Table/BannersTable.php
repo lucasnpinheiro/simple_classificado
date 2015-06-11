@@ -48,8 +48,6 @@ class BannersTable extends Table {
         $validator
                 ->add('id', 'valid', ['rule' => 'numeric'])
                 ->allowEmpty('id', 'create')
-                ->requirePresence('foto', 'create')
-                ->notEmpty('foto')
                 ->add('status', 'valid', ['rule' => 'numeric'])
                 ->requirePresence('status', 'create')
                 ->notEmpty('status')
