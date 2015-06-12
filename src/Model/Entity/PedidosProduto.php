@@ -15,12 +15,6 @@ class PedidosProduto extends Entity
      * @var array
      */
     protected $_accessible = [
-        'produto_id' => true,
-        'pedido_id' => true,
-        'quantidade' => true,
-        'valor' => true,
-        'status' => true,
-        'produto' => true,
-        'pedido' => true,
+        '*' => true,
     ];
 }

@@ -69,6 +69,7 @@ class PinheiroHelper extends Helper {
         $d = [
             0 => ['type' => 'danger', 'text' => 'Inativo'],
             1 => ['type' => 'success', 'text' => 'Ativo'],
+            2 => ['type' => 'primary', 'text' => 'Entregue'],
         ];
         return '<span class="label label-' . $d[$val]['type'] . '">' . $d[$val]['text'] . '</span>';
     }

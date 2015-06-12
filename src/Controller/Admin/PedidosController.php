@@ -1,67 +1,27 @@
 <?php
-namespace App\Controller;
+
+namespace App\Controller\Admin;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Pedidos Controller
  *
  * @property \App\Model\Table\PedidosTable $Pedidos
  */
-class PedidosController extends AppController
-{
+class PedidosController extends AppController {
 
     /**
      * Index method
      *
      * @return void
      */
-    public function index()
-    {
+    public function index() {
         $this->paginate = [
             'contain' => ['Clientes']
         ];
         $this->set('pedidos', $this->paginate($this->Pedidos));
         $this->set('_serialize', ['pedidos']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Pedido id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $pedido = $this->Pedidos->get($id, [
-            'contain' => ['Clientes', 'Produtos']
-        ]);
-        $this->set('pedido', $pedido);
-        $this->set('_serialize', ['pedido']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $pedido = $this->Pedidos->newEntity();
-        if ($this->request->is('post')) {
-            $pedido = $this->Pedidos->patchEntity($pedido, $this->request->data);
-            if ($this->Pedidos->save($pedido)) {
-                $this->Flash->success('The pedido has been saved.');
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error('The pedido could not be saved. Please, try again.');
-            }
-        }
-        $clientes = $this->Pedidos->Clientes->find('list');
-        $produtos = $this->Pedidos->Produtos->find('list');
-        $this->set(compact('pedido', 'clientes', 'produtos'));
-        $this->set('_serialize', ['pedido']);
     }
 
     /**
@@ -71,11 +31,13 @@ class PedidosController extends AppController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $pedido = $this->Pedidos->get($id, [
-            'contain' => ['Produtos']
+            'contain' => ['Clientes']
         ]);
+        
+        $p = TableRegistry::get('PedidosProdutos');
+        $produtos = $p->find('all')->where(['pedido_id' => $id])->contain(['Produtos']);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pedido = $this->Pedidos->patchEntity($pedido, $this->request->data);
             if ($this->Pedidos->save($pedido)) {
@@ -85,9 +47,7 @@ class PedidosController extends AppController
                 $this->Flash->error('The pedido could not be saved. Please, try again.');
             }
         }
-        $clientes = $this->Pedidos->Clientes->find('list');
-        $produtos = $this->Pedidos->Produtos->find('list');
-        $this->set(compact('pedido', 'clientes', 'produtos'));
+        $this->set(compact('pedido', 'produtos'));
         $this->set('_serialize', ['pedido']);
     }
 
@@ -98,8 +58,7 @@ class PedidosController extends AppController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $pedido = $this->Pedidos->get($id);
         if ($this->Pedidos->delete($pedido)) {
@@ -109,4 +68,5 @@ class PedidosController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
 }

@@ -21,7 +21,7 @@ class BannersController extends AppController {
         'modified' => ['type' => 'like'],
         'updated' => ['type' => 'like'],
     ];
-    public $bannerDimmesion = ['1' => [1024, 200], '2' => [1024, 200], '4' => [120, 60]];
+    public $bannerDimmesion = ['1' => [1024, 200], '2' => [1024, 200], '4' => [250, 300]];
 
     /**
      * Index method
