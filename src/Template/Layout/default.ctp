@@ -4,8 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <title><?php echo $this->fetch('title') ?></title>  
+        <?php
+        if (isset($title)) {
+            $this->assign('title', ' - ' . $title);
+        } else {
+            $this->assign('title', '');
+        }
+        ?>
+        <title><?php echo \Cake\Core\Configure::read('Topo.Titulo') . $this->fetch('title') ?></title>  
         <?php echo $this->fetch('meta') ?>
         <?php echo $this->Html->css('/blue/css/bootstrap.min.css') ?>
         <?php echo $this->Html->css('/blue/css/flexslider.css') ?>
@@ -13,7 +19,17 @@
         <?php echo $this->Html->css('/blue/css/font-awesome.min.css') ?>
         <?php echo $this->Html->css('/blue/css/style.css') ?>
         <?php echo $this->Html->css('/blue/css/blue.css') ?>
-        <?php echo $this->fetch('css') ?>
+
+        <style>
+            .topoPersonalizado{
+                height: <?php echo \Cake\Core\Configure::read('Topo.Altura'); ?>;
+                background-color: <?php echo \Cake\Core\Configure::read('Topo.Cor'); ?>;
+                background-image: url('<?php echo $this->Url->build('/files/' . $this->Pinheiro->hasImage(\Cake\Core\Configure::read('Topo.Imagem')), true); ?>');
+                background-repeat: no-repeat;
+                background-position: <?php echo \Cake\Core\Configure::read('Topo.PosicaoX') ?> <?php echo \Cake\Core\Configure::read('Topo.PosicaoY') ?>; 
+            }
+            <?php echo \Cake\Core\Configure::read('Topo.Style'); ?>
+        </style>
         <script type="text/javascript">
             var cms = {
                 url: "<?php echo \Cake\Routing\Router::url('/', true); ?>"
@@ -24,13 +40,13 @@
     <body>
 
         <!-- Header starts -->
-        <header>
+        <header class="topoPersonalizado">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- Logo. Use class "color" to add color to the text. -->
                         <div class="logo">
-                            <h1><a class="navbar-brand" href="<?= $this->Url->build('/', true) ?>">Pinheiro Vassouras</a></h1>
+                            <h1><a class="navbar-brand" href="<?= $this->Url->build('/', true) ?>"><?php echo \Cake\Core\Configure::read('Topo.TituloLogo') ?> </a></h1>
                         </div>
                     </div>
                 </div>
@@ -52,6 +68,7 @@
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav">
+                    <li><?php echo $this->Html->link('Pagina Inicial', '/'); ?></li>
                     <li class="dropdown">
                         <?php echo $this->Html->link('Produtos <span class="caret"></span>', ['controller' => 'produtos', 'action' => 'index'], ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
                         <ul class="dropdown-menu" role="menu">
@@ -230,6 +247,8 @@
     <?php echo $this->Html->script('/blue/js/respond.min.js') ?>
     <?php echo $this->Html->script('/blue/js/html5shiv.js') ?>
     <?php echo $this->Html->script('/blue/js/custom.js') ?>
+    <?php echo $this->fetch('css') ?>
+    <?php echo $this->fetch('script') ?>
 
 </body>	
 </html>

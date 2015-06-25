@@ -40,7 +40,7 @@
             <tbody>
                 <?php foreach ($produtos as $produto): ?>
                     <tr>
-                        <td><img style="max-width: 50px;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($produto->foto), true) ?>" alt="<?= ($produto->nome); ?>"></td>
+                        <td><img class="img-thumbnail" style="max-width: 50px;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($produto->foto), true) ?>" alt="<?= ($produto->nome); ?>"></td>
                         <td><?= h($produto->nome) ?></td>
                         <td><?= $this->Pinheiro->moeda($produto->valor) ?></td>
 

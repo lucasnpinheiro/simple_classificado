@@ -36,7 +36,7 @@
             <tbody>
                 <?php foreach ($categorias as $categoria): ?>
                     <tr>
-                        <td><img style="max-width: 50px;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($categoria->foto), true) ?>" alt="<?= ($categoria->nome); ?>"></td>
+                        <td><img class="img-thumbnail" style="max-width: 50px;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($categoria->foto), true) ?>" alt="<?= ($categoria->nome); ?>"></td>
                         <td><?= $this->Number->format($categoria->id) ?></td>
                         <td><?= h($categoria->nome) ?></td>
                         <td><?= $this->Pinheiro->status($categoria->status) ?></td>

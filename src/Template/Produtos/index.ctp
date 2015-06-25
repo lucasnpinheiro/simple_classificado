@@ -13,7 +13,7 @@
                     <div class="item" style="min-height: 200px;">
                         <!-- Item image -->
                         <div class="item-image">
-                            <a href="">
+                            <a href="<?= $this->Url->build(['controller' => 'produtos', 'action' => 'categoria', 'categoria' => $produto->categoria_id], true) ?>">
                                 <img class="img-responsive" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($produto->categoria->foto), true) ?>" alt="<?= ($produto->categoria->nome); ?>">
                             </a>
                         </div>

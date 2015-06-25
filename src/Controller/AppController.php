@@ -98,12 +98,7 @@ class AppController extends Controller {
     }
 
     public function isAuthorized($user) {
-        // Admin can access every action
-        //if (isset($user['role']) && $user['role'] === 'admin') {
         return true;
-        //}
-        // Default deny
-        //return false;
     }
 
     public function beforeFilter(Event $event) {
@@ -116,31 +111,35 @@ class AppController extends Controller {
         }
     }
 
-    public function upload($width = null, $height = null) {
-        if (count($this->request->data['foto']) > 0) {
+    public function upload($width = null, $height = null, $_fileName = 'foto', $custom_name = null) {
+        if (count($this->request->data[$_fileName]) > 0) {
             $this->loadComponent('Upload');
-            $up = $this->Upload->run($this->request->data['foto']);
+            if (!is_null($custom_name)) {
+                $this->Upload->custom_name($custom_name);
+            }
+            $up = $this->Upload->run($this->request->data[$_fileName]);
             if ($up === 0) {
                 $this->Flash->error(implode('<br />', $this->Upload->error));
                 return FALSE;
             } else if ($up === 1) {
-                if (is_null($height)) {
-                    $info = getimagesize($this->Upload->destination . $this->Upload->filename);
-                    $__width = $info[0] / $width;
-                    $__height = $info[1] / $__width;
-                    $height = $__height;
+                if (!is_null($width)) {
+                    if (is_null($height)) {
+                        $info = getimagesize($this->Upload->destination . $this->Upload->filename);
+                        $__width = $info[0] / $width;
+                        $__height = $info[1] / $__width;
+                        $height = $__height;
+                    }
+                    $this->loadComponent('SimpleImage');
+                    $file = $this->SimpleImage->init($this->Upload->destination . $this->Upload->filename)->thumbnail($width, $height)->save($this->Upload->destination . $this->Upload->filename);
+                    $this->request->data[$_fileName] = $this->Upload->filename;
+                } else {
+                    $this->request->data[$_fileName] = $this->Upload->filename;
                 }
-                $this->loadComponent('SimpleImage');
-                $file = $this->SimpleImage->init($this->Upload->destination . $this->Upload->filename)->thumbnail($width, $height)->save($this->Upload->destination . $this->Upload->filename);
-                $this->request->data['foto'] = $this->Upload->filename;
-                return true;
             } else {
-                unset($this->request->data['foto']);
-                return true;
+                unset($this->request->data[$_fileName]);
             }
         } else {
-            unset($this->request->data['foto']);
-            return true;
+            unset($this->request->data[$_fileName]);
         }
         return true;
     }

@@ -38,9 +38,11 @@
                         $active = FALSE;
                         foreach ($v as $key => $value):
                             $dados = [];
-                            //`id`, `nome`, `chave`, `value`, `required`, `options`, `status`, `created`, `updated`, `modified`, `after`, `before`
                             $dados = [
                                 'type' => $value['tipo'],
+                                'help' => $value['help'],
+                                'prepend' => $value['prepend'],
+                                'append' => $value['append'],
                                 'label' => $value['nome'],
                                 'value' => $value['value'],
                                 'required' => (bool) $value['required'],
@@ -49,7 +51,20 @@
                             if ($value['tipo'] != 'select') {
                                 unset($dados['options']);
                             }
-                            echo $this->Form->input($value['id'], $dados);
+                            if ($value['tipo'] == 'file') {
+                                echo '<img class="img-thumbnail" style="max-height: 150px;" src="' . $this->Url->build('/files/' . $this->Pinheiro->hasImage($value['value']), true) . '" />';
+                                $dados['value'] = '';
+                            }
+                            if ($value['tipo'] == 'color') {
+                                echo $this->Form->color($value['id'], $dados);
+                            } else if ($value['tipo'] == 'editor') {
+                                echo $this->Form->editor($value['id'], $dados);
+                            } else if ($value['tipo'] == 'codemirror') {
+                                echo $this->Form->codemirror($value['id'], $dados);
+                            } else {
+                                echo $this->Form->input($value['id'], $dados);
+                            }
+                            echo '<div class="clearfix"></div>';
                         endforeach;
                         ?>
                     </div>

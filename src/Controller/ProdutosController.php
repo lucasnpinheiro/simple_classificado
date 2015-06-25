@@ -21,9 +21,10 @@ class ProdutosController extends AppController {
             'contain' => ['Categorias'],
             'conditions' => ['Produtos.status' => 1],
             'group' => 'Produtos.categoria_id',
-            'order' => ['rand()']
+            'order' => ['rand()'],
+            'limit' => 8,
         ];
-        $this->set('produtos_titulo', 'Categorias');
+        $this->set('produtos_titulo', '&nbsp;');
         $this->paginate = $options;
         $this->set('produtos', $this->paginate($this->Produtos));
         $this->set('_serialize', ['produtos']);
@@ -45,7 +46,7 @@ class ProdutosController extends AppController {
         $this->loadModel('Categorias');
         $find = $this->Categorias->get($this->request->query['categoria']);
         $this->set('produtos_titulo', $find->nome);
-
+        $this->set('title', 'Categoria - ' . $find->nome);
         $this->paginate = $options;
         $this->set('produtos', $this->paginate($this->Produtos));
         $this->set('_serialize', ['produtos']);
@@ -67,6 +68,7 @@ class ProdutosController extends AppController {
         $this->set('produto', $produto);
         $this->set('pedidosProduto', $pedidosProduto);
         $this->set('_serialize', ['produto', 'pedidosProduto']);
+        $this->set('title', 'Produto - ' . $produto->nome);
     }
 
 }

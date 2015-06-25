@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading"><?php echo $produtos_titulo; ?></div>
+    <div class="panel-heading">Categoria: <?php echo $produtos_titulo; ?></div>
     <div class="panel-body">
         <?php
         if (count($produtos) > 0) {
@@ -11,7 +11,7 @@
                     <div class="item">
                         <!-- Item image -->
                         <div class="item-image">
-                            <a href="">
+                            <a href="<?= $this->Url->build(['action' => 'view', $produto->id], true) ?>">
                                 <img style="max-width: 100%; max-height: 100%;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($produto->foto), true) ?>" alt="<?= ($produto->nome); ?>">
                             </a>
                         </div>

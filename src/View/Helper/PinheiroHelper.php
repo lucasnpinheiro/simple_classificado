@@ -51,9 +51,13 @@ class PinheiroHelper extends Helper {
     }
 
     public function moeda($number, $options = []) {
-        $default = ['before' => 'R$ ', 'precision' => 2, 'places' => 2, 'locale' => 'pt_BR'];
-        $options = Hash::merge($default, $options);
-        return $this->Number->format($number, $options);
+        if ($number > 0) {
+            $default = ['before' => 'R$ ', 'precision' => 2, 'places' => 2, 'locale' => 'pt_BR'];
+            $options = Hash::merge($default, $options);
+            return $this->Number->format($number, $options);
+        } else {
+            return 'consultar';
+        }
     }
 
     public function hasImage($img = null) {
@@ -78,6 +82,5 @@ class PinheiroHelper extends Helper {
         $d = [1 => 'Topo', 2 => 'Rodape', 3 => 'Lateral Esquerda', 4 => 'Lateral Direita'];
         return $d[$val];
     }
-
 
 }

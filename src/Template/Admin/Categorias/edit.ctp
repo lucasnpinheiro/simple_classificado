@@ -15,7 +15,7 @@
         echo $this->Form->input('nome');
         echo $this->Form->input('status', ['options' => ['0' => 'Inativo', '1' => 'Ativo']]);
         if ($categoria->foto) {
-            echo $this->Html->image('/files/' . $categoria->foto, ['alt' => $categoria->nome, 'style' => 'max-width: 250px;']) . '<br />';
+            echo $this->Html->image('/files/' . $categoria->foto, ['class' => 'img-thumbnail', 'alt' => $categoria->nome, 'style' => 'max-width: 250px;']) . '<br />';
         }
         echo $this->Form->label('foto');
         echo $this->Form->file('foto', ['type' => 'file']);

@@ -47,4 +47,41 @@ class MyFormHelper extends BootstrapFormHelper {
         return parent::input($fieldName, $options);
     }
 
+    public function color($fieldName, array $options = array()) {
+        $this->Html->css('/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css', ['block' => 'css']);
+        $this->Html->script('/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js', ['block' => 'script']);
+        $this->Html->scriptBlock("
+            jQuery('document').ready(function(){
+                $('input.color').colorpicker();  
+            });
+        ", ['block' => 'script']);
+
+
+        if (!isset($options['class'])) {
+            $options['class'] = '';
+        }
+        $options['class'] .= ' color';
+        $options['type'] = 'text';
+        return parent::input($fieldName, $options);
+    }
+
+    public function codemirror($fieldName, array $options = array()) {
+        $this->Html->css('/codemirror-5.3/lib/codemirror.css', ['block' => 'css']);
+        $this->Html->css('/codemirror-5.3/lib/custom.css', ['block' => 'css']);
+        $this->Html->script('/codemirror-5.3/lib/codemirror.js', ['block' => 'script']);
+        $this->Html->scriptBlock("
+            var editor = CodeMirror.fromTextArea(document.getElementById('" . $this->_domId($fieldName) . "'), {
+                            lineNumbers: true
+                         });
+        ", ['block' => 'script']);
+
+
+        if (!isset($options['class'])) {
+            $options['class'] = '';
+        }
+        $options['class'] .= ' codemirror';
+        $options['type'] = 'textarea';
+        return parent::input($fieldName, $options);
+    }
+
 }

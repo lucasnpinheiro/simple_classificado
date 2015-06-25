@@ -13,7 +13,7 @@
         <?php
         echo $this->Form->input('id');
         if ($banner->foto) {
-            echo $this->Html->image('/files/' . $banner->foto, ['style' => 'max-width: 100%;']) . '<br />';
+            echo $this->Html->image('/files/' . $banner->foto, ['class' => 'img-thumbnail', 'style' => 'max-width: 100%;']) . '<br />';
         }
         echo $this->Form->label('foto');
         echo $this->Form->file('foto', ['type' => 'file']);

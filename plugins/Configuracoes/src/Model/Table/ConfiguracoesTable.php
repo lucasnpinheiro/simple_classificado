@@ -50,9 +50,7 @@ class ConfiguracoesTable extends Table
             ->notEmpty('options')
             ->add('status', 'valid', ['rule' => 'numeric'])
             ->requirePresence('status', 'create')
-            ->notEmpty('status')
-            ->allowEmpty('after')
-            ->allowEmpty('before');
+            ->notEmpty('status');
 
         return $validator;
     }

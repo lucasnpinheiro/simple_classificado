@@ -58,3 +58,7 @@ footer {
 .panel-footer .pagination {
     margin: 0px;
 }
+
+:required {
+  border-left: 2px solid red;
+}

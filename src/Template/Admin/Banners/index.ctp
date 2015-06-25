@@ -37,7 +37,7 @@
                 <?php foreach ($banners as $banner): ?>
                     <tr>
                         <td><?= $this->Number->format($banner->id) ?></td>
-                        <td><img style="max-width: 50px;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($banner->foto), true) ?>" alt="<?= ($banner->nome); ?>"></td>
+                        <td><img class="img-thumbnail" style="max-width: 50px;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($banner->foto), true) ?>" alt="<?= ($banner->nome); ?>"></td>
                         <td><?= $this->Pinheiro->status($banner->status) ?></td>
                         <td><?= $this->Pinheiro->posicao($banner->posicao) ?></td>
                         <td><?= h($banner->created) ?></td>
