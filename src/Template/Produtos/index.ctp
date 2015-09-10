@@ -9,7 +9,7 @@
                 ?>
 
 
-                <div class="col-md-3 col-sm-4">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="item" style="min-height: 200px;">
                         <!-- Item image -->
                         <div class="item-image">

@@ -22,7 +22,7 @@ class ProdutosController extends AppController {
             'conditions' => ['Produtos.status' => 1],
             'group' => 'Produtos.categoria_id',
             'order' => ['rand()'],
-            'limit' => 8,
+            'limit' => 6,
         ];
         $this->set('produtos_titulo', '&nbsp;');
         $this->paginate = $options;

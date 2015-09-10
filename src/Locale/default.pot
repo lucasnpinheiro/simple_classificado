@@ -1,0 +1,274 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-06-25 07:35+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Controller/UsuariosController.php:22
+msgid "Usuário ou senha invalidos."
+msgstr ""
+
+#: Template/Admin/Banners/add.ctp:5
+#: Template/Admin/Banners/edit.ctp:5
+#: Template/Admin/Banners/index.ctp:5;9
+#: Template/Admin/BannersTipos/add.ctp:5
+#: Template/Admin/BannersTipos/edit.ctp:5
+#: Template/Admin/BannersTipos/index.ctp:5;9
+#: Template/Admin/Categorias/add.ctp:5
+#: Template/Admin/Categorias/edit.ctp:5
+#: Template/Admin/Categorias/index.ctp:5;9
+#: Template/Admin/Pedidos/edit.ctp:5
+#: Template/Admin/Pedidos/index.ctp:5;8
+#: Template/Admin/Produtos/add.ctp:5
+#: Template/Admin/Produtos/edit.ctp:5
+#: Template/Admin/Produtos/index.ctp:5;9
+#: Template/Admin/Usuarios/add.ctp:5
+#: Template/Admin/Usuarios/edit.ctp:5
+#: Template/Admin/Usuarios/index.ctp:5;9
+msgid "List"
+msgstr ""
+
+#: Template/Admin/Banners/add.ctp:6;9
+#: Template/Admin/Banners/edit.ctp:6
+#: Template/Admin/Banners/index.ctp:6
+#: Template/Admin/BannersTipos/add.ctp:6;9
+#: Template/Admin/BannersTipos/edit.ctp:6
+#: Template/Admin/BannersTipos/index.ctp:6
+#: Template/Admin/Categorias/add.ctp:6;9
+#: Template/Admin/Categorias/edit.ctp:6
+#: Template/Admin/Categorias/index.ctp:6
+#: Template/Admin/Produtos/add.ctp:6;9
+#: Template/Admin/Produtos/edit.ctp:6
+#: Template/Admin/Produtos/index.ctp:6
+#: Template/Admin/Usuarios/add.ctp:6;9
+#: Template/Admin/Usuarios/edit.ctp:6
+#: Template/Admin/Usuarios/index.ctp:6
+msgid "Add"
+msgstr ""
+
+#: Template/Admin/Banners/add.ctp:22
+#: Template/Admin/Banners/edit.ctp:26
+#: Template/Admin/BannersTipos/add.ctp:22
+#: Template/Admin/BannersTipos/edit.ctp:22
+#: Template/Admin/Categorias/add.ctp:21
+#: Template/Admin/Categorias/edit.ctp:25
+#: Template/Admin/Pedidos/edit.ctp:66
+#: Template/Admin/PedidosProdutos/add.ctp:23
+#: Template/Admin/PedidosProdutos/edit.ctp:29
+#: Template/Admin/Produtos/add.ctp:24
+#: Template/Admin/Produtos/edit.ctp:28
+#: Template/Admin/Usuarios/add.ctp:21
+#: Template/Admin/Usuarios/edit.ctp:22
+#: Template/Clientes/add.ctp:19
+msgid "Submit"
+msgstr ""
+
+#: Template/Admin/Banners/edit.ctp:9
+#: Template/Admin/Banners/index.ctp:45
+#: Template/Admin/BannersTipos/edit.ctp:9
+#: Template/Admin/BannersTipos/index.ctp:49
+#: Template/Admin/Categorias/edit.ctp:9
+#: Template/Admin/Categorias/index.ctp:45
+#: Template/Admin/Pedidos/edit.ctp:8
+#: Template/Admin/Pedidos/index.ctp:38
+#: Template/Admin/PedidosProdutos/index.ctp:41
+#: Template/Admin/Produtos/edit.ctp:9
+#: Template/Admin/Produtos/index.ctp:53
+#: Template/Admin/Usuarios/edit.ctp:9
+#: Template/Admin/Usuarios/index.ctp:49
+msgid "Edit"
+msgstr ""
+
+#: Template/Admin/Banners/index.ctp:33
+#: Template/Admin/BannersTipos/index.ctp:35
+#: Template/Admin/Categorias/index.ctp:33
+#: Template/Admin/Pedidos/index.ctp:22
+#: Template/Admin/PedidosProdutos/add.ctp:2
+#: Template/Admin/PedidosProdutos/edit.ctp:2
+#: Template/Admin/PedidosProdutos/index.ctp:2;22
+#: Template/Admin/PedidosProdutos/view.ctp:2
+#: Template/Admin/Produtos/index.ctp:37
+#: Template/Admin/Usuarios/index.ctp:36
+#: Template/PedidosProdutos/index.ctp:13
+msgid "Actions"
+msgstr ""
+
+#: Template/Admin/Banners/index.ctp:46
+#: Template/Admin/BannersTipos/index.ctp:50
+#: Template/Admin/Categorias/index.ctp:46
+#: Template/Admin/Pedidos/index.ctp:39
+#: Template/Admin/PedidosProdutos/edit.ctp:5
+#: Template/Admin/PedidosProdutos/index.ctp:42
+#: Template/Admin/Produtos/index.ctp:54
+#: Template/Admin/Usuarios/index.ctp:50
+#: Template/PedidosProdutos/index.ctp:27
+msgid "Delete"
+msgstr ""
+
+#: Template/Admin/Banners/index.ctp:46
+#: Template/Admin/BannersTipos/index.ctp:50
+#: Template/Admin/Categorias/index.ctp:46
+#: Template/Admin/Pedidos/index.ctp:39
+#: Template/Admin/PedidosProdutos/edit.ctp:7
+#: Template/Admin/PedidosProdutos/index.ctp:42
+#: Template/Admin/PedidosProdutos/view.ctp:5
+#: Template/Admin/Produtos/index.ctp:54
+#: Template/Admin/Usuarios/index.ctp:50
+#: Template/PedidosProdutos/index.ctp:27
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: Template/Admin/Banners/index.ctp:56
+#: Template/Admin/BannersTipos/index.ctp:61
+#: Template/Admin/Categorias/index.ctp:56
+#: Template/Admin/Pedidos/index.ctp:49
+#: Template/Admin/PedidosProdutos/index.ctp:51
+#: Template/Admin/Produtos/index.ctp:64
+#: Template/Admin/Usuarios/index.ctp:60
+#: Template/Produtos/categoria.ctp:46
+msgid "previous"
+msgstr ""
+
+#: Template/Admin/Banners/index.ctp:56
+#: Template/Admin/BannersTipos/index.ctp:61
+#: Template/Admin/Categorias/index.ctp:56
+#: Template/Admin/Pedidos/index.ctp:49
+#: Template/Admin/PedidosProdutos/index.ctp:53
+#: Template/Admin/Produtos/index.ctp:64
+#: Template/Admin/Usuarios/index.ctp:60
+#: Template/Produtos/categoria.ctp:46
+msgid "next"
+msgstr ""
+
+#: Template/Admin/Pedidos/index.ctp:37
+#: Template/Admin/PedidosProdutos/index.ctp:40
+msgid "View"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/add.ctp:4
+#: Template/Admin/PedidosProdutos/edit.ctp:10
+#: Template/Admin/PedidosProdutos/view.ctp:6
+msgid "List Pedidos Produtos"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/add.ctp:5
+#: Template/Admin/PedidosProdutos/edit.ctp:11
+#: Template/Admin/PedidosProdutos/index.ctp:5
+#: Template/Admin/PedidosProdutos/view.ctp:8
+msgid "List Produtos"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/add.ctp:6
+#: Template/Admin/PedidosProdutos/edit.ctp:12
+#: Template/Admin/PedidosProdutos/index.ctp:6
+#: Template/Admin/PedidosProdutos/view.ctp:9
+msgid "New Produto"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/add.ctp:7
+#: Template/Admin/PedidosProdutos/edit.ctp:13
+#: Template/Admin/PedidosProdutos/index.ctp:7
+#: Template/Admin/PedidosProdutos/view.ctp:10
+msgid "List Pedidos"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/add.ctp:8
+#: Template/Admin/PedidosProdutos/edit.ctp:14
+#: Template/Admin/PedidosProdutos/index.ctp:8
+#: Template/Admin/PedidosProdutos/view.ctp:11
+msgid "New Pedido"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/add.ctp:14
+msgid "Add Pedidos Produto"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/edit.ctp:20
+#: Template/Admin/PedidosProdutos/view.ctp:4
+msgid "Edit Pedidos Produto"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/index.ctp:4
+#: Template/Admin/PedidosProdutos/view.ctp:7
+msgid "New Pedidos Produto"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:5
+msgid "Delete Pedidos Produto"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:18
+msgid "Produto"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:20
+msgid "Pedido"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:24
+msgid "Id"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:26
+msgid "Quantidade"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:28
+msgid "Valor"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:30
+msgid "Status"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:34
+msgid "Created"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:36
+msgid "Updated"
+msgstr ""
+
+#: Template/Admin/PedidosProdutos/view.ctp:38
+msgid "Modified"
+msgstr ""
+
+#: Template/Clientes/index.ctp:13
+msgid "Logar"
+msgstr ""
+
+#: Template/Produtos/view.ctp:23
+msgid "Adicionar ao carrinho"
+msgstr ""
+
+#: Template/Usuarios/contato.ctp:9
+msgid "Enviar"
+msgstr ""
+
+#: Template/Usuarios/login.ctp:8
+msgid "Login"
+msgstr ""
+
+#: Template/Error/error400.ctp:33
+#: Template/Error/error500.ctp:36
+msgid "Error"
+msgstr ""
+
+#: Template/Error/error400.ctp:35
+msgid "The requested address %s was not found on this server."
+msgstr ""
+
+#: Template/Error/error500.ctp:34
+msgid "An Internal Error Has Occurred"
+msgstr ""
+

@@ -45,7 +45,7 @@ class PinheiroHelper extends Helper {
         return $categorias->find('all')->where(['status' => 1]);
     }
 
-    public function listaBanners($posicao = 1, $limit = 3) {
+    public function listaBanners($posicao = 1, $limit = 10) {
         $banners = TableRegistry::get('Banners');
         return $banners->find('all')->where(['status' => 1, 'posicao' => $posicao])->order('RAND()')->limit($limit);
     }

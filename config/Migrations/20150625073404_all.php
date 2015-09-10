@@ -108,7 +108,7 @@ class All extends AbstractMigration
                 'limit' => 1,
                 'null' => false,
             ])
-            ->addColumn('incial', 'integer', [
+            ->addColumn('inicial', 'integer', [
                 'default' => 0,
                 'limit' => 1,
                 'null' => false,
@@ -207,6 +207,11 @@ class All extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
+            ->addColumn('foto', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
             ->create();
         $table = $this->table('clientes');
         $table
@@ -281,6 +286,74 @@ class All extends AbstractMigration
                 'null' => true,
             ])
             ->create();
+        $table = $this->table('configuracoes');
+        $table
+            ->addColumn('nome', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('chave', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('value', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('required', 'integer', [
+                'default' => 0,
+                'limit' => 1,
+                'null' => false,
+            ])
+            ->addColumn('options', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('status', 'integer', [
+                'default' => 1,
+                'limit' => 1,
+                'null' => false,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('updated', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('append', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('prepend', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('tipo', 'string', [
+                'default' => 'text',
+                'limit' => 50,
+                'null' => true,
+            ])
+            ->addColumn('help', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->create();
         $table = $this->table('midias');
         $table
             ->addColumn('model', 'string', [
@@ -329,7 +402,7 @@ class All extends AbstractMigration
             ->addColumn('cliente_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('status', 'integer', [
                 'default' => 0,
@@ -492,6 +565,7 @@ class All extends AbstractMigration
         $this->dropTable('blogs_posts');
         $this->dropTable('categorias');
         $this->dropTable('clientes');
+        $this->dropTable('configuracoes');
         $this->dropTable('midias');
         $this->dropTable('pedidos');
         $this->dropTable('pedidos_produtos');
