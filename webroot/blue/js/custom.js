@@ -1,81 +1,72 @@
-/* JS */
 
-/* Flex image slider */
+$(document).ready(function () {
+    /* JS */
 
-
-$('.flex-image').flexslider({
-  direction: "vertical",
-  controlNav: false,
-  directionNav: true,
-  pauseOnHover: true,
-  slideshowSpeed: 10000      
-});
+    /* Flex image slider */
 
 
-/* Flexslider for product images */
+    $('.flex-image').flexslider({
+        direction: "vertical",
+        controlNav: false,
+        directionNav: true,
+        pauseOnHover: true,
+        slideshowSpeed: 10000
+    });
 
 
-$('.product-image-slider').flexslider({
-  direction: "vertical",
-  controlNav: false,
-  directionNav: true,
-  pauseOnHover: true,
-  slideshowSpeed: 10000      
-});
-
-/* Carousel */
-
-$(document).ready(function() {
-			
-	 var recent = $("#owl-recent");
-	 
-	recent.owlCarousel({
-		autoPlay: 3000, //Set AutoPlay to 3 seconds
-		items : 4,
-		mouseDrag : false,
-		pagination : false
-	});
-	
-	$(".next").click(function(){
-			recent.trigger('owl.next');
-	  })
-	  
-	  $(".prev").click(function(){
-			recent.trigger('owl.prev');
-	  })
-});
+    /* Flexslider for product images */
 
 
-/* Support */
+    $('.product-image-slider').flexslider({
+        direction: "vertical",
+        controlNav: false,
+        directionNav: true,
+        pauseOnHover: true,
+        slideshowSpeed: 10000
+    });
 
-$("#slist a").click(function(e){
-   e.preventDefault();
-   $(this).next('p').toggle(200);
-});
+    /* Carousel */
 
+    var recent = $("#owl-recent");
 
+    recent.owlCarousel({
+        autoPlay: 3000, //Set AutoPlay to 3 seconds
+        items: 4,
+        mouseDrag: false,
+        pagination: false
+    });
 
-/* Scroll to Top */
+    $(".next").click(function () {
+        recent.trigger('owl.next');
+    })
 
-$(document).ready(function(){
-  $(".totop").hide();
+    $(".prev").click(function () {
+        recent.trigger('owl.prev');
+    })
 
-  $(function(){
-    $(window).scroll(function(){
-      if ($(this).scrollTop()>600)
-      {
-        $('.totop').fadeIn();
-      } 
-      else
-      {
-        $('.totop').fadeOut();
-      }
+    $(".totop").hide();
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 600)
+        {
+            $('.totop').fadeIn();
+        } else
+        {
+            $('.totop').fadeOut();
+        }
     });
 
     $('.totop a').click(function (e) {
-      e.preventDefault();
-      $('body,html').animate({scrollTop: 0}, 500);
+        e.preventDefault();
+        $('body,html').animate({scrollTop: 0}, 500);
     });
 
-  });
+
+    /* Support */
+
+    $("#slist a").click(function (e) {
+        e.preventDefault();
+        $(this).next('p').toggle(200);
+    });
+
 });

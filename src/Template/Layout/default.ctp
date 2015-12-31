@@ -247,6 +247,7 @@
     <?php echo $this->Html->script('/blue/js/respond.min.js') ?>
     <?php echo $this->Html->script('/blue/js/html5shiv.js') ?>
     <?php echo $this->Html->script('/blue/js/custom.js') ?>
+    <?php echo $this->Html->script('/js/funcoes.js') ?>
     <?php echo $this->fetch('css') ?>
     <?php echo $this->fetch('script') ?>
 

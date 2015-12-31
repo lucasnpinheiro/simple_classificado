@@ -13,13 +13,14 @@
             <hr>
             <p><strong>Categoria:</strong> <?= $produto->categoria->nome; ?></p>
             <br>
-            <p><strong>Descrição:</strong> <?= $this->Text->autoParagraph(h($produto->descricao)); ?></p>
+            <p><strong>Descrição:</strong> <?= $this->Text->autoParagraph($produto->descricao); ?></p>
             <hr>
             <div class="text-right">
                 <?= $this->Form->create($pedidosProduto, ['horizontal' => true, 'url' => array('controller' => 'PedidosProdutos', 'action' => 'add')]); ?>
 
                 <?php
                 echo $this->Form->input('quantidade', [
+                    'value' => '1',
                     'append' => $this->Form->button(__('Adicionar ao carrinho'))
                 ]);
                 echo $this->Form->input('produto_id', ['value' => $produto->id, 'type' => 'hidden']);

@@ -18,9 +18,10 @@ use Cake\Network\Http\Client;
 class UtilitsController extends AppController {
 
     public function cep($cep) {
+        $cep = str_replace('-', '', $cep);
         $this->layout = 'ajax';
         $http = new Client();
-        $response = $http->get('http://williarts.com.br/cep_novo/' . $cep);
+        $response = $http->get('http://cep.agenciavoxel.com.br/' . $cep . '.json');
         $this->set('retorno', json_decode($response->body(), true));
     }
 
