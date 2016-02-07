@@ -12,7 +12,7 @@
 
         <?php
         echo $this->Form->input('cliente_id', ['type' => 'hidden']);
-        echo $this->Form->input('status', ['label'=>'Situação do Pedido','options' => ['0' => 'Inativo', '1' => 'Ativo', '2' => 'Entregue']]);
+        echo $this->Form->input('status', ['label'=>'Situação do Pedido','options' => $this->Pinheiro->statusPagSeguroArray()]);
         ?>
         <div class="col-xs-12 col-md-6"><strong>Nome:</strong> <?php echo h($pedido->cliente->nome) . ' ' . $this->Pinheiro->status($pedido->cliente->status); ?></div>
         <div class="col-xs-12 col-md-6"><strong>E-mail:</strong> <?php echo h($pedido->cliente->email); ?></div>

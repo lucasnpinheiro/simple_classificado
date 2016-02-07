@@ -29,7 +29,7 @@
                         <td>
                             <?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->id, ['controller' => 'Clientes', 'action' => 'edit', $pedido->cliente->id]) : '' ?>
                         </td>
-                        <td><?= $this->Pinheiro->status($pedido->status) ?></td>
+                        <td><?= $this->Pinheiro->statusPagSeguro($pedido->status) ?></td>
                         <td><?= h($pedido->created) ?></td>
                         <td><?= h($pedido->modified) ?></td>
                         <td><?= h($pedido->updated) ?></td>

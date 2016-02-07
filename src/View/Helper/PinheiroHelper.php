@@ -78,6 +78,27 @@ class PinheiroHelper extends Helper {
         return '<span class="label label-' . $d[$val]['type'] . '">' . $d[$val]['text'] . '</span>';
     }
 
+    public function statusPagSeguro($val = 0) {
+        $d = [
+            0 => ['type' => 'info', 'text' => 'Pedido em aberto'],
+            1 => ['type' => 'success', 'text' => 'Aguardando Pagamento'],
+            2 => ['type' => 'primary', 'text' => 'Pago'],
+            3 => ['type' => 'primary', 'text' => 'Cancelado'],
+            4 => ['type' => 'primary', 'text' => 'Entregue'],
+        ];
+        return '<span class="label label-' . $d[$val]['type'] . '">' . $d[$val]['text'] . '</span>';
+    }
+
+    public function statusPagSeguroArray() {
+        return [
+            0 => 'Pedido em aberto',
+            1 => 'Aguardando Pagamento',
+            2 => 'Pago',
+            3 => 'Cancelado',
+            4 => 'Entregue',
+        ];
+    }
+
     public function posicao($val = 0) {
         $d = [1 => 'Topo', 2 => 'Rodape', 3 => 'Lateral Esquerda', 4 => 'Lateral Direita'];
         return $d[$val];

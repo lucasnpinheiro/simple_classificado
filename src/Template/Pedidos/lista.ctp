@@ -9,7 +9,7 @@
                 ?>
                 <h2>Pedido: <?php echo $pedido->id; ?></h2>
                 <h3>
-                    <div class="col-xs-12 col-md-6">Situação: <?php echo $this->Pinheiro->status($pedido->status); ?></div>
+                    <div class="col-xs-12 col-md-6">Situação: <?php echo $this->Pinheiro->statusPagSeguro($pedido->status); ?></div>
                     <div class="col-xs-12 col-md-6 text-right">Data do pedido: <?php echo $pedido->created->format('d/m/Y H:i:s'); ?></div>
                 </h3>
                 <div>

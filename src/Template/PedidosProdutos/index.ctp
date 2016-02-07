@@ -35,7 +35,7 @@
         <div class="col-xs-12 text-right">
             <?php
             if ($this->request->session()->read('Cliente.id') AND $this->request->session()->read('Cart.id')) {
-                echo $this->Html->link('Finalizar pedido', ['controller' => 'Pedidos', 'action' => 'index', $this->request->session()->read('Cart.id'), $this->request->session()->read('Cliente.id')], ['class' => 'btn btn-success']);
+                echo $this->Html->link('Finalizar pedido', ['controller' => 'Pedidos', 'action' => 'pageguro', $this->request->session()->read('Cart.id'), $this->request->session()->read('Cliente.id')], ['class' => 'btn btn-success']);
             } else {
                 echo $this->Html->link('Autenticar para finalizar pedido', ['controller' => 'Clientes', 'action' => 'index'], ['class' => 'btn btn-success']);
             }

@@ -87,6 +87,7 @@
                     <li><?php echo $this->Html->link('Meus Pedidos', ['controller' => 'Pedidos', 'action' => 'lista']); ?></li>
                     <?php if ($this->request->session()->read('Cliente.id')) { ?>
                         <li><?php echo $this->Html->link('Logout', ['controller' => 'Clientes', 'action' => 'logout']); ?></li>
+                        <li><?php echo $this->Html->link('Meu Carrinho', ['controller' => 'PedidosProdutos', 'action' => 'index']); ?></li>
 
                     <?php } ?>
                 </ul>

@@ -10,7 +10,8 @@
         "mobiledetect/mobiledetectlib": "*",
         "cakephp/migrations": "*",
         "cakephp/plugin-installer": "*",
-        "pagseguro/php": "@stable"
+        "pagseguro/php": "@stable",
+        "phpsc/pagseguro" : "*"
     },
     "require-dev": {
         "psy/psysh": "@stable",
