@@ -83,12 +83,13 @@
                     <li><?php echo $this->Html->link('Blog', ['plugin' => 'Blogs', 'controller' => 'BlogsPosts', 'action' => 'index']); ?></li>
 
                 </ul>
-                <?php if ($this->request->session()->read('Cliente.id')) { ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Olá <?php echo $this->request->session()->read('Cliente.nome'); ?></a></li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><?php echo $this->Html->link('Meus Pedidos', ['controller' => 'Pedidos', 'action' => 'lista']); ?></li>
+                    <?php if ($this->request->session()->read('Cliente.id')) { ?>
                         <li><?php echo $this->Html->link('Logout', ['controller' => 'Clientes', 'action' => 'logout']); ?></li>
-                    </ul>
-                <?php } ?>
+
+                    <?php } ?>
+                </ul>
             </nav>
         </div>
     </div>

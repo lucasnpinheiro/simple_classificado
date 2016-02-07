@@ -13,7 +13,7 @@
 
 namespace App\View\Helper;
 
-use Bootstrap3\View\Helper\BootstrapModalHelper;
+use Bootstrap\View\Helper\BootstrapModalHelper;
 
 class MyModalHelper extends BootstrapModalHelper {
     

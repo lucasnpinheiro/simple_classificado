@@ -13,7 +13,7 @@
 
 namespace App\View\Helper;
 
-use Bootstrap3\View\Helper\BootstrapHtmlHelper;
+use Bootstrap\View\Helper\BootstrapHtmlHelper;
 
 class MyHtmlHelper extends BootstrapHtmlHelper {
     

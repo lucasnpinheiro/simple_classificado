@@ -13,7 +13,7 @@
 
 namespace App\View\Helper;
 
-use Bootstrap3\View\Helper\BootstrapFormHelper;
+use Bootstrap\View\Helper\BootstrapFormHelper;
 
 class MyFormHelper extends BootstrapFormHelper {
 

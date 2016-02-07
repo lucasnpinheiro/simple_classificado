@@ -8,7 +8,7 @@
 
 // In a controller or table method.
 use Cake\ORM\TableRegistry;
-use Cake\Network\Email\Email;
+use Cake\Mailer\Email;
 
 
 $configuracoes = TableRegistry::get('Configuracoes.Configuracoes');

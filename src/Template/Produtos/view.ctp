@@ -20,12 +20,15 @@
 
                 <?php
                 echo $this->Form->input('quantidade', [
+                    'label' => null,
                     'value' => '1',
-                    'append' => $this->Form->button(__('Adicionar ao carrinho'))
+                    'append' => $this->Form->button('Adicionar ao carrinho'),
+                    'escape' => false
                 ]);
                 echo $this->Form->input('produto_id', ['value' => $produto->id, 'type' => 'hidden']);
                 echo $this->Form->input('valor', ['value' => $produto->valor, 'type' => 'hidden']);
                 echo $this->Form->input('status', ['value' => 1, 'type' => 'hidden']);
+                //echo $this->Form->button('Adicionar ao carrinho');
                 ?>
                 <?= $this->Form->end() ?>
             </div>

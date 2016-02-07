@@ -4,7 +4,7 @@
         <div class="col-xs-12">
             <table class="table table-bordered table-condensed table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>Foto</th>
                         <th><?= $this->Paginator->sort('produto_id') ?></th>
                         <th><?= $this->Paginator->sort('quantidade') ?></th>
@@ -16,14 +16,14 @@
                 <tbody>
                     <?php foreach ($pedidosProdutos as $pedidosProduto): ?>
                         <tr>
-                            <td><img style="max-width: 75px;" class="img-responsive" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($pedidosProduto->produto->foto), true) ?>" alt="<?= h($pedidosProduto->produto->nome); ?>"></td>
-                            <td>
+                            <td class="text-center"><img style="max-width: 75px;" class="img-responsive" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($pedidosProduto->produto->foto), true) ?>" alt="<?= h($pedidosProduto->produto->nome); ?>"></td>
+                            <td class="text-left">
                                 <?= $pedidosProduto->has('produto') ? $this->Html->link($pedidosProduto->produto->nome, ['controller' => 'Produtos', 'action' => 'view', $pedidosProduto->produto->id]) : '' ?>
                             </td>
-                            <td><?= $this->Number->format($pedidosProduto->quantidade) ?></td>
-                            <td><?= $this->Pinheiro->moeda($pedidosProduto->valor) ?></td>
-                            <td><?= $this->Pinheiro->moeda($pedidosProduto->quantidade * $pedidosProduto->valor) ?></td>
-                            <td class="actions">
+                            <td class="text-right"><?= $this->Number->format($pedidosProduto->quantidade) ?></td>
+                            <td class="text-right"><?= $this->Pinheiro->moeda($pedidosProduto->valor) ?></td>
+                            <td class="text-right"><?= $this->Pinheiro->moeda($pedidosProduto->quantidade * $pedidosProduto->valor) ?></td>
+                            <td class="actions text-center">
                                 <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pedidosProduto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedidosProduto->id), 'class' => 'btn btn-danger']) ?>
                             </td>
                         </tr>

@@ -47,7 +47,7 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
 use Cake\Log\Log;
-use Cake\Network\Email\Email;
+use Cake\Mailer\Email;
 use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Utility\Inflector;
@@ -177,7 +177,8 @@ Request::addDetector('tablet', function ($request) {
  *
  */
 Plugin::load('Migrations');
-Plugin::load('Bootstrap3', ['autoload' => true]);
+//Plugin::load('Bootstrap3', ['autoload' => true]);
+Plugin::loadAll(); 
 
 // Only try to load DebugKit in development mode
 // Debug Kit should not be installed on a production system
