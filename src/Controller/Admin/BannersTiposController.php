@@ -11,35 +11,15 @@ use App\Controller\Admin\AppAdminController;
  */
 class BannersTiposController extends AppAdminController {
 
-    public $presetVars = [
-        'id' => ['type' => 'value'],
-        'nome' => ['type' => 'like'],
-        'descricao' => ['type' => 'like'],
-        'altura' => ['type' => 'value'],
-        'largura' => ['type' => 'value'],
-        'status' => ['type' => 'value'],
-        'created' => ['type' => 'like'],
-        'modified' => ['type' => 'like'],
-        'updated' => ['type' => 'like'],
-    ];
-
     /**
      * Index method
      *
      * @return void
      */
     public function index() {
-        $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess($this->name,['action'=>'index']);
-        $options = [
-            'conditions' => $this->Prg->parsedParams()
-        ];
-        $this->paginate = $options;
-        $bannersTipos = $this->paginate($this->BannersTipos);
-
-        $bannersTipo = $this->BannersTipos->newEntity();
-        $this->set(compact('bannersTipos', 'bannersTipo'));
-        $this->set('_serialize', ['bannersTipos']);
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('bannersTipo', $this->paginate($query));
+        $this->set('_serialize', ['bannersTipo']);
     }
 
     /**

@@ -13,11 +13,11 @@
         <div class="panel panel-info">
             <div class="panel-body">
 
-                <?= $this->Form->create($cliente, ['type' => 'file', 'class' => 'form-inline busca']); ?>
+                <?= $this->Form->create(null, ['type' => 'file', 'class' => 'form-inline busca']); ?>
                 <?php
-                echo $this->Form->input('nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Nome', 'required' => false, 'label' => false]);
-                echo $this->Form->input('email', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'E-mail', 'required' => false, 'label' => false]);
-                echo $this->Form->input('status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
+                echo $this->Form->input('Clientes.nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Nome', 'required' => false, 'label' => false]);
+                echo $this->Form->input('Clientes.email', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'E-mail', 'required' => false, 'label' => false]);
+                echo $this->Form->input('Clientes.status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
                 ?>
                 <?= $this->Form->end() ?>
             </div>

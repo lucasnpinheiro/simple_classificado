@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Search\Manager;
 
 /**
  * Clientes Model
@@ -27,6 +28,26 @@ class ClientesTable extends Table {
         $this->hasMany('Pedidos', [
             'foreignKey' => 'cliente_id'
         ]);
+        $this->addBehavior('Search.Search');
+    }
+
+    public function searchConfiguration() {
+        return $this->searchConfigurationDynamic();
+    }
+
+    private function searchConfigurationDynamic() {
+        $search = new Manager($this);
+        $c = $this->schema()->columns();
+        foreach ($c as $key => $value) {
+            $t = $this->schema()->columnType($value);
+            if ($t != 'string' AND $t != 'text') {
+                $search->value($value, ['field' => $this->aliasField($value)]);
+            } else {
+                $search->like($value, ['before' => true, 'after' => true, 'field' => $this->aliasField($value)]);
+            }
+        }
+
+        return $search;
     }
 
     /**
@@ -66,6 +87,7 @@ class ClientesTable extends Table {
      */
     public function buildRules(RulesChecker $rules) {
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['documento']));
         return $rules;
     }
 
@@ -76,6 +98,8 @@ class ClientesTable extends Table {
         } else {
             unset($entity->senha);
         }
+        $entity->documento = str_replace(array('-', ' ', '_', '/', '.'), '', $entity->documento);
+        $entity->cep = str_replace(array('-', ' ', '_', '/', '.'), '', $entity->cep);
         return true;
     }
 

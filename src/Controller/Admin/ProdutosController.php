@@ -11,38 +11,17 @@ use App\Controller\Admin\AppAdminController;
  */
 class ProdutosController extends AppAdminController {
 
-    public $presetVars = [
-        'id' => ['type' => 'value'],
-        'nome' => ['type' => 'like'],
-        'descricao' => ['type' => 'like'],
-        'valor' => ['type' => 'like'],
-        'foto' => ['type' => 'like'],
-        'categoria_id' => ['type' => 'value'],
-        'status' => ['type' => 'value'],
-        'created' => ['type' => 'like'],
-        'modified' => ['type' => 'like'],
-        'updated' => ['type' => 'like'],
-    ];
-
     /**
      * Index method
      *
      * @return void
      */
     public function index() {
-        $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess($this->name, ['action' => 'index']);
-        $options = [
-            'contain' => ['Categorias'],
-            'order' => ['Produtos.modified' => 'DESC'],
-            'conditions' => $this->Prg->parsedParams()
-        ];
-        $this->paginate = $options;
-        $produtos = $this->paginate($this->Produtos);
-
-        $produto = $this->Produtos->newEntity();
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('produtos', $this->paginate($query));
+        $this->set('_serialize', ['produtos']);
         $categorias = $this->Produtos->Categorias->find('list', ['fields' => ['Categorias.id', 'Categorias.nome']]);
-        $this->set(compact('produtos', 'produto', 'categorias'));
+        $this->set(compact('produtos', 'categorias'));
         $this->set('_serialize', ['produtos']);
     }
 

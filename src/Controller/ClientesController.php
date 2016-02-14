@@ -28,7 +28,10 @@ class ClientesController extends AppController {
             }
 
             $cliente = $this->Clientes->find()->where($options)->first();
-            if (!$cliente OR empty($options)) {
+            $passwordHasher = \Cake\Auth\PasswordHasherFactory::build('Default');
+            $senha = $passwordHasher->check($this->request->data['senha'], $cliente->senha);
+
+            if (!$cliente OR empty($options) OR ! $senha) {
                 return $this->redirect(['action' => 'add']);
             }
             $this->request->session()->write('Cliente', $cliente->toArray());

@@ -9,15 +9,13 @@
         "cakephp/cakephp": "3.1",
         "mobiledetect/mobiledetectlib": "*",
         "cakephp/migrations": "*",
-        "cakephp/plugin-installer": "*",
-        "pagseguro/php": "@stable",
-        "phpsc/pagseguro" : "*"
+        "cakephp/plugin-installer": "*"
     },
     "require-dev": {
         "psy/psysh": "@stable",
         "cakephp/debug_kit": "*",
         "cakephp/bake": "*",
-        "cakedc/search": "* 3.0.x-dev",
+        "friendsofcake/search": "dev-master",
         "holt59/cakephp3-bootstrap-helpers": "dev-master"
     },
     "suggest": {

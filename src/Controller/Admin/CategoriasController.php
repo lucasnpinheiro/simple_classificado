@@ -11,32 +11,14 @@ use App\Controller\Admin\AppAdminController;
  */
 class CategoriasController extends AppAdminController {
 
-    public $presetVars = [
-        'id' => ['type' => 'value'],
-        'nome' => ['type' => 'like'],
-        'status' => ['type' => 'value'],
-        'created' => ['type' => 'like'],
-        'modified' => ['type' => 'like'],
-        'updated' => ['type' => 'like'],
-    ];
-
     /**
      * Index method
      *
      * @return void
      */
     public function index() {
-        $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess($this->name, ['action' => 'index']);
-        $options = [
-            'order' => ['Categorias.nome' => 'ASC'],
-            'conditions' => $this->Prg->parsedParams()
-        ];
-        $this->paginate = $options;
-        $categorias = $this->paginate($this->Categorias);
-
-        $categoria = $this->Categorias->newEntity();
-        $this->set(compact('categorias', 'categoria'));
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('categorias', $this->paginate($query));
         $this->set('_serialize', ['categorias']);
     }
 

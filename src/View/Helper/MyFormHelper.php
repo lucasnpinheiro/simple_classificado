@@ -44,7 +44,7 @@ class MyFormHelper extends BootstrapFormHelper {
         }
         $options['class'] .= ' editor_redactor';
         $options['type'] = 'textarea';
-        return parent::input($fieldName, $options);
+        return $this->input($fieldName, $options);
     }
 
     public function color($fieldName, array $options = array()) {
@@ -62,7 +62,7 @@ class MyFormHelper extends BootstrapFormHelper {
         }
         $options['class'] .= ' color';
         $options['type'] = 'text';
-        return parent::input($fieldName, $options);
+        return $this->input($fieldName, $options);
     }
 
     public function codemirror($fieldName, array $options = array()) {
@@ -81,7 +81,33 @@ class MyFormHelper extends BootstrapFormHelper {
         }
         $options['class'] .= ' codemirror';
         $options['type'] = 'textarea';
-        return parent::input($fieldName, $options);
+        return $this->input($fieldName, $options);
+    }
+
+    /**
+     * 
+     * Create & return an input block (Twitter Boostrap Like).
+     * 
+     * New options:
+     * 	- prepend: 
+     * 		-> string: Add <span class="add-on"> before the input
+     * 		-> array: Add elements in array before inputs
+     * 	- append: Same as prepend except it add elements after input
+     *        
+     * */
+    public function input($fieldName, array $options = array()) {
+        $options = $this->_parseOptions($fieldName, $options);
+        $div = $this->_extractOption('div', $options, false);
+        if (!empty($options['div'])) {
+            unset($options['div']);
+            $add = [];
+            foreach ($div as $key => $value) {
+                $add[] = $key . '="' . $value . '"';
+            }
+            return '<div ' . implode(' ', $add) . ' >' . parent::input($fieldName, $options) . '</div>';
+        } else {
+            return parent::input($fieldName, $options);
+        }
     }
 
 }

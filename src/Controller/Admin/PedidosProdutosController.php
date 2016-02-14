@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\Admin\AppAdminController;
@@ -8,20 +9,16 @@ use App\Controller\Admin\AppAdminController;
  *
  * @property \App\Model\Table\PedidosProdutosTable $PedidosProdutos
  */
-class PedidosProdutosController extends AppAdminController
-{
+class PedidosProdutosController extends AppAdminController {
 
     /**
      * Index method
      *
      * @return void
      */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Produtos', 'Pedidos']
-        ];
-        $this->set('pedidosProdutos', $this->paginate($this->PedidosProdutos));
+    public function index() {
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('pedidosProdutos', $this->paginate($query));
         $this->set('_serialize', ['pedidosProdutos']);
     }
 
@@ -32,8 +29,7 @@ class PedidosProdutosController extends AppAdminController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $pedidosProduto = $this->PedidosProdutos->get($id, [
             'contain' => ['Produtos', 'Pedidos']
         ]);
@@ -46,8 +42,7 @@ class PedidosProdutosController extends AppAdminController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $pedidosProduto = $this->PedidosProdutos->newEntity();
         if ($this->request->is('post')) {
             $pedidosProduto = $this->PedidosProdutos->patchEntity($pedidosProduto, $this->request->data);
@@ -71,8 +66,7 @@ class PedidosProdutosController extends AppAdminController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $pedidosProduto = $this->PedidosProdutos->get($id, [
             'contain' => []
         ]);
@@ -98,8 +92,7 @@ class PedidosProdutosController extends AppAdminController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $pedidosProduto = $this->PedidosProdutos->get($id);
         if ($this->PedidosProdutos->delete($pedidosProduto)) {
@@ -109,4 +102,5 @@ class PedidosProdutosController extends AppAdminController
         }
         return $this->redirect(['action' => 'index']);
     }
+
 }

@@ -13,7 +13,7 @@
         <div class="panel panel-info">
             <div class="panel-body">
 
-                <?= $this->Form->create($produto, ['type' => 'file', 'class' => 'form-inline busca']); ?>
+                <?= $this->Form->create(null, ['type' => 'file', 'class' => 'form-inline busca']); ?>
                 <?php
                 echo $this->Form->input('nome', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Nome', 'required' => false, 'label' => false]);
                 echo $this->Form->input('categoria_id', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Categorias', 'required' => false, 'label' => false, 'empty' => 'Categoria', 'options' => $categorias]);

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Controller\Admin\AppAdminController;
@@ -8,17 +9,16 @@ use App\Controller\Admin\AppAdminController;
  *
  * @property \App\Model\Table\ClientesTable $Clientes
  */
-class ClientesController extends AppAdminController
-{
+class ClientesController extends AppAdminController {
 
     /**
      * Index method
      *
      * @return void
      */
-    public function index()
-    {
-        $this->set('clientes', $this->paginate($this->Clientes));
+    public function index() {
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('clientes', $this->paginate($query));
         $this->set('_serialize', ['clientes']);
     }
 
@@ -29,8 +29,7 @@ class ClientesController extends AppAdminController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $cliente = $this->Clientes->get($id, [
             'contain' => ['Pedidos']
         ]);
@@ -43,8 +42,7 @@ class ClientesController extends AppAdminController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $cliente = $this->Clientes->newEntity();
         if ($this->request->is('post')) {
             $cliente = $this->Clientes->patchEntity($cliente, $this->request->data);
@@ -66,8 +64,7 @@ class ClientesController extends AppAdminController
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $cliente = $this->Clientes->get($id, [
             'contain' => []
         ]);
@@ -91,8 +88,7 @@ class ClientesController extends AppAdminController
      * @return void Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $cliente = $this->Clientes->get($id);
         if ($this->Clientes->delete($cliente)) {
@@ -102,4 +98,5 @@ class ClientesController extends AppAdminController
         }
         return $this->redirect(['action' => 'index']);
     }
+
 }

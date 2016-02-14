@@ -11,16 +11,6 @@ use App\Controller\Admin\AppAdminController;
  */
 class BannersController extends AppAdminController {
 
-    public $presetVars = [
-        'id' => ['type' => 'value'],
-        'foto' => ['type' => 'like'],
-        'url' => ['type' => 'like'],
-        'status' => ['type' => 'value'],
-        'posicao' => ['type' => 'value'],
-        'created' => ['type' => 'like'],
-        'modified' => ['type' => 'like'],
-        'updated' => ['type' => 'like'],
-    ];
     public $bannerDimmesion = ['1' => [1024, 200], '2' => [1024, 200], '4' => [250, 300]];
 
     /**
@@ -29,16 +19,8 @@ class BannersController extends AppAdminController {
      * @return void
      */
     public function index() {
-        $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess($this->name, ['action' => 'index']);
-        $options = [
-            'conditions' => $this->Prg->parsedParams()
-        ];
-        $this->paginate = $options;
-        $banners = $this->paginate($this->Banners);
-
-        $banner = $this->Banners->newEntity();
-        $this->set(compact('banners', 'banner'));
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('banners', $this->paginate($query));
         $this->set('_serialize', ['banners']);
     }
 

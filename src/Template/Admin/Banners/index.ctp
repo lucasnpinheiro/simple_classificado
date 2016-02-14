@@ -13,7 +13,7 @@
         <div class="panel panel-info">
             <div class="panel-body">
 
-                <?= $this->Form->create($banner, ['type' => 'file', 'class' => 'form-inline busca']); ?>
+                <?= $this->Form->create(null, ['type' => 'file', 'class' => 'form-inline busca']); ?>
                 <?php
                 echo $this->Form->input('posicao', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-8'], 'placeholder' => 'Posição', 'required' => false, 'label' => false, 'empty' => 'Posição', 'options' => ['1' => 'Topo 1024x200', '2' => 'Rodape 1024x200', '4' => 'Lateral Direita 250x300']]);
                 echo $this->Form->input('status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);

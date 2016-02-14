@@ -2,14 +2,14 @@
 
 namespace Configuracoes\Controller\Admin;
 
-use Configuracoes\Controller\AppController;
+use Configuracoes\Controller\AppAdminController;
 
 /**
  * Configuracoes Controller
  *
  * @property \Configuracoes\Model\Table\ConfiguracoesTable $Configuracoes
  */
-class ConfiguracoesController extends AppController {
+class ConfiguracoesController extends AppAdminController {
 
     /**
      * Index method

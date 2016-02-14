@@ -7,8 +7,9 @@
                 <div class="panel-body">
                     <?= $this->Form->create($cliente); ?>
                     <?php
-                    echo $this->Form->input('email');
-                    echo $this->Form->input('documento');
+                    echo $this->Form->input('email', ['div' => ['class' => 'col-xs-12 col-md-6']]);
+                    echo $this->Form->input('documento', ['label' => 'CPF/CNPJ', 'div' => ['class' => 'col-xs-12 col-md-6']]);
+                    echo $this->Form->input('senha', ['required' => true, 'type' => 'password']);
                     ?>
                     <?= $this->Form->button(__('Logar'), ['class' => 'btn btn-success']) ?>
                     <?= $this->Form->end() ?>

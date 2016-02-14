@@ -17,7 +17,8 @@ class BlogsPostsController extends AppController {
      * @return void
      */
     public function index() {
-        $this->set('blogsPosts', $this->paginate($this->BlogsPosts));
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('blogsPosts', $this->paginate($query));
         $this->set('_serialize', ['blogsPosts']);
     }
 

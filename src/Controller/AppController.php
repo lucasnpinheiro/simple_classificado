@@ -95,6 +95,7 @@ class AppController extends Controller {
                 ]
             ]
         ]);
+        $this->loadComponent('Search.Prg');
     }
 
     public function isAuthorized($user) {

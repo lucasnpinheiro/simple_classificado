@@ -11,33 +11,15 @@ use Blogs\Controller\Admin\AppAdminController;
  */
 class BlogsPostsController extends AppAdminController {
 
-    public $presetVars = [
-        'id' => ['type' => 'value'],
-        'titulo' => ['type' => 'like'],
-        'conteudo' => ['type' => 'like'],
-        'status' => ['type' => 'value'],
-        'created' => ['type' => 'like'],
-        'modified' => ['type' => 'like'],
-        'updated' => ['type' => 'like'],
-    ];
-
     /**
      * Index method
      *
      * @return void
      */
     public function index() {
-        $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess();
-        $options = [
-            'conditions' => $this->Prg->parsedParams()
-        ];
-        $this->paginate = $options;
-        $blogsPosts = $this->paginate($this->BlogsPosts);
-
-        $blogsPost = $this->BlogsPosts->newEntity();
-        $this->set(compact('blogsPosts', 'blogsPost'));
-        $this->set('_serialize', ['blogsPages']);
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('blogsPosts', $this->paginate($query));
+        $this->set('_serialize', ['blogsPosts']);
     }
 
     /**

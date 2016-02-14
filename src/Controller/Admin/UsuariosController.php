@@ -11,34 +11,14 @@ use App\Controller\Admin\AppAdminController;
  */
 class UsuariosController extends AppAdminController {
 
-    public $presetVars = [
-        'id' => ['type' => 'value'],
-        'nome' => ['type' => 'like'],
-        'email' => ['type' => 'like'],
-        'senha' => ['type' => 'like'],
-        'status' => ['type' => 'value'],
-        'created' => ['type' => 'like'],
-        'modified' => ['type' => 'like'],
-        'updated' => ['type' => 'like'],
-    ];
-
     /**
      * Index method
      *
      * @return void
      */
     public function index() {
-        $this->loadComponent('Search.Prg');
-        $this->Prg->commonProcess($this->name,['action'=>'index']);
-        $options = [
-            'order' => ['Usuarios.nome' => 'ASC'],
-            'conditions' => $this->Prg->parsedParams()
-        ];
-        $this->paginate = $options;
-        $usuarios = $this->paginate($this->Usuarios);
-
-        $usuario = $this->Usuarios->newEntity();
-        $this->set(compact('usuarios', 'usuario'));
+        $query = $this->{$this->modelClass}->find('search', $this->{$this->modelClass}->filterParams($this->request->query));
+        $this->set('usuarios', $this->paginate($query));
         $this->set('_serialize', ['usuarios']);
     }
 

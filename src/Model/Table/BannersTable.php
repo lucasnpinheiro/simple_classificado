@@ -7,22 +7,12 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Search\Manager;
 
 /**
  * Banners Model
  */
 class BannersTable extends Table {
-
-    public $filterArgs = [
-        'id' => ['type' => 'value'],
-        'foto' => ['type' => 'like'],
-        'url' => ['type' => 'like'],
-        'status' => ['type' => 'value'],
-        'posicao' => ['type' => 'value'],
-        'created' => ['type' => 'like'],
-        'modified' => ['type' => 'like'],
-        'updated' => ['type' => 'like'],
-    ];
 
     /**
      * Initialize method
@@ -35,7 +25,26 @@ class BannersTable extends Table {
         $this->displayField('id');
         $this->primaryKey('id');
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Search.Searchable');
+        $this->addBehavior('Search.Search');
+    }
+
+    public function searchConfiguration() {
+        return $this->searchConfigurationDynamic();
+    }
+
+    private function searchConfigurationDynamic() {
+        $search = new Manager($this);
+        $c = $this->schema()->columns();
+        foreach ($c as $key => $value) {
+            $t = $this->schema()->columnType($value);
+            if ($t != 'string' AND $t != 'text') {
+                $search->value($value, ['field' => $this->aliasField($value)]);
+            } else {
+                $search->like($value, ['before' => true, 'after' => true, 'field' => $this->aliasField($value)]);
+            }
+        }
+
+        return $search;
     }
 
     /**

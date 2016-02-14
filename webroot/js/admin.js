@@ -27,6 +27,19 @@ $('document').ready(function () {
         'allowNegative': false,
         'precision': 3
     });
+    $('.numero').mask('999999');
+    $('.cep').mask('99999-999');
+    $(".cpfcnpj").keydown(function () {
+        var obj = this;
+        $(obj).unmask();
+        var tamanho = $(obj).val().length;
+
+        if (tamanho <= 11) {
+            $(obj).mask("999.999.999-99");
+        } else if (tamanho > 11) {
+            $(obj).mask("99.999.999/9999-99");
+        }
+    });
     $(':input[autofocus]').eq(0).focus();
 });
 
