@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AppAdminController;
 
 /**
  * Usuarios Controller
  *
  * @property \App\Model\Table\UsuariosTable $Usuarios
  */
-class UsuariosController extends AppController {
+class UsuariosController extends AppAdminController {
 
     public $presetVars = [
         'id' => ['type' => 'value'],

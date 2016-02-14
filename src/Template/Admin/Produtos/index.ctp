@@ -51,7 +51,7 @@
                         <td><?= h($produto->modified) ?></td>
                         <td class="actions">
                             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id], ['class' => 'btn btn-info btn-sm']) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $produto->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $produto->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Tem certeza de que deseja excluir este registro?', $produto->id)]) ?>
                         </td>
                     </tr>
 

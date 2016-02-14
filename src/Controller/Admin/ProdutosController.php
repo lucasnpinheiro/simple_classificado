@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AppAdminController;
 
 /**
  * Produtos Controller
  *
  * @property \App\Model\Table\ProdutosTable $Produtos
  */
-class ProdutosController extends AppController {
+class ProdutosController extends AppAdminController {
 
     public $presetVars = [
         'id' => ['type' => 'value'],

@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AppAdminController;
 use Cake\ORM\TableRegistry;
 /**
  * Pedidos Controller
  *
  * @property \App\Model\Table\PedidosTable $Pedidos
  */
-class PedidosController extends AppController {
+class PedidosController extends AppAdminController {
 
     /**
      * Index method

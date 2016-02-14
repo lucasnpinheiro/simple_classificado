@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AppAdminController;
 
 /**
  * Categorias Controller
  *
  * @property \App\Model\Table\CategoriasTable $Categorias
  */
-class CategoriasController extends AppController {
+class CategoriasController extends AppAdminController {
 
     public $presetVars = [
         'id' => ['type' => 'value'],

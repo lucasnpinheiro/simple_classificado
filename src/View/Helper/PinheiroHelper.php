@@ -45,9 +45,16 @@ class PinheiroHelper extends Helper {
         return $categorias->find('all')->where(['status' => 1]);
     }
 
-    public function listaBanners($posicao = 1, $limit = 10) {
+    public function listaBanners($divisao = null, $posicao = 1, $limit = 10) {
         $banners = TableRegistry::get('Banners');
-        return $banners->find('all')->where(['status' => 1, 'posicao' => $posicao])->order('RAND()')->limit($limit);
+        $dados = [
+            'status' => 1,
+            'posicao' => $posicao,
+        ];
+        if (!is_null($divisao)) {
+            $dados['divisao'] = $divisao;
+        }
+        return $banners->find('all')->where($dados)->order('RAND()')->limit($limit);
     }
 
     public function moeda($number, $options = []) {

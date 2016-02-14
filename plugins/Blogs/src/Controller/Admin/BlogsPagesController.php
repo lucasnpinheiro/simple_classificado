@@ -2,14 +2,14 @@
 
 namespace Blogs\Controller\Admin;
 
-use Blogs\Controller\AppController;
+use Blogs\Controller\Admin\AppAdminController;
 
 /**
  * BlogsPages Controller
  *
  * @property \App\Model\Table\BlogsPagesTable $BlogsPages
  */
-class BlogsPagesController extends AppController {
+class BlogsPagesController extends AppAdminController {
 
     public $presetVars = [
         'id' => ['type' => 'value'],

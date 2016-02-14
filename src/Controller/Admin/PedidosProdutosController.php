@@ -1,14 +1,14 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AppAdminController;
 
 /**
  * PedidosProdutos Controller
  *
  * @property \App\Model\Table\PedidosProdutosTable $PedidosProdutos
  */
-class PedidosProdutosController extends AppController
+class PedidosProdutosController extends AppAdminController
 {
 
     /**

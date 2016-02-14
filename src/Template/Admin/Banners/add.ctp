@@ -16,6 +16,7 @@
         echo $this->Form->input('url');
         echo $this->Form->input('status', ['options' => ['0' => 'Inativo', '1' => 'Ativo']]);
         echo $this->Form->input('posicao', ['options' => ['1' => 'Topo 1024x200', '2' => 'Rodape 1024x200', '4' => 'Lateral Direita 250x300']]);
+        echo $this->Form->input('divisao', ['options' => ['1' => '1', '2' => '2', '3' => '3']]);
         ?>
     </div>
     <div class="panel-footer text-right">

@@ -100,7 +100,7 @@
 
     <div class="carousel-holder">
         <?php
-        $_banners_topo = $this->Pinheiro->listaBanners(1);
+        $_banners_topo = $this->Pinheiro->listaBanners(null, 1);
         if (count($_banners_topo) > 0) {
             ?>
             <div>
@@ -119,7 +119,7 @@
                         <?php
                         foreach ($_banners_topo as $key => $value) {
                             ?>
-                            <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
+                            <div class="item <?php echo $key === 0 ? 'active' : '' ?>" style="max-height: 150px;">
                                 <?php if ($value->url != '') {
                                     ?>
                                     <a href="<?php echo $value->url; ?>">
@@ -160,9 +160,9 @@
                     <?php echo $this->fetch('content') ?>
                 </div>
                 <div class="col-md-2 col-sm-3 hidden-xs">
-                    <?php echo $this->element('banner_lateral'); ?>
-                    <?php echo $this->element('banner_lateral'); ?>
-                    <?php echo $this->element('banner_lateral'); ?>
+                    <?php echo $this->element('banner_lateral', ['divisao' => 1]); ?>
+                    <?php echo $this->element('banner_lateral', ['divisao' => 2]); ?>
+                    <?php echo $this->element('banner_lateral', ['divisao' => 3]); ?>
                 </div>
 
 
@@ -176,7 +176,7 @@
         <div class="container-fluid">
             <div class="carousel-holder">
                 <?php
-                $_banners_rodape = $this->Pinheiro->listaBanners(2);
+                $_banners_rodape = $this->Pinheiro->listaBanners(null, 2);
                 if (count($_banners_rodape) > 0) {
                     ?>
                     <div>

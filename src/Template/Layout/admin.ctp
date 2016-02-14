@@ -48,6 +48,7 @@
                     <ul class="nav navbar-nav">
                         <li><?php echo $this->Html->link('Categorias', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Categorias', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Produtos', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Produtos', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Clientes', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Clientes', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Pedidos', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Pedidos', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Banners', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Banners', 'action' => 'index']); ?></li>
                         <li class="dropdown">

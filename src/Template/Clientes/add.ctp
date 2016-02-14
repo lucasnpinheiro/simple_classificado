@@ -15,6 +15,7 @@
         echo $this->Form->input('cidade');
         echo $this->Form->input('estado');
         echo $this->Form->input('status', ['type' => 'hidden', 'value' => 1]);
+        echo $this->Form->input('senha', ['type' => 'password']);
         ?>
         <?= $this->Form->button(__('Submit')) ?>
         <?= $this->Form->end() ?>

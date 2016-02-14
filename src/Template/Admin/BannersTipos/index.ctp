@@ -47,7 +47,7 @@
                         <td><?= h($bannersTipo->modified) ?></td>
                         <td class="actions">
                             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $bannersTipo->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $bannersTipo->id], ['confirm' => __('Are you sure you want to delete # {0}?', $bannersTipo->id)]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $bannersTipo->id], ['confirm' => __('Tem certeza de que deseja excluir este registro?', $bannersTipo->id)]) ?>
                         </td>
                     </tr>
 

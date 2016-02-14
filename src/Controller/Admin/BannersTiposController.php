@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
+use App\Controller\Admin\AppAdminController;
 
 /**
  * BannersTipos Controller
  *
  * @property \App\Model\Table\BannersTiposTable $BannersTipos
  */
-class BannersTiposController extends AppController {
+class BannersTiposController extends AppAdminController {
 
     public $presetVars = [
         'id' => ['type' => 'value'],

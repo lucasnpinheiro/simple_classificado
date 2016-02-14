@@ -125,7 +125,7 @@ msgstr ""
 #: Template/Admin/Produtos/index.ctp:54
 #: Template/Admin/Usuarios/index.ctp:50
 #: Template/PedidosProdutos/index.ctp:27
-msgid "Are you sure you want to delete # {0}?"
+msgid "Tem certeza de que deseja excluir este registro?"
 msgstr ""
 
 #: Template/Admin/Banners/index.ctp:56

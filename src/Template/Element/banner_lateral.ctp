@@ -1,6 +1,6 @@
 <div class="row carousel-holder">
     <?php
-    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners(4);
+    $_banners_lateral_esquerda = $this->Pinheiro->listaBanners($divisao, 4);
     if (count($_banners_lateral_esquerda) > 0) {
         ?>
         <div class="col-md-12">

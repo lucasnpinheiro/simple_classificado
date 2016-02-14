@@ -4,7 +4,7 @@
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $pedidosProduto->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $pedidosProduto->id)]
+                ['confirm' => __('Tem certeza de que deseja excluir este registro?', $pedidosProduto->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Pedidos Produtos'), ['action' => 'index']) ?></li>

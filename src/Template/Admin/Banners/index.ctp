@@ -29,6 +29,7 @@
                     <th><?= $this->Paginator->sort('foto') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('posicao') ?></th>
+                    <th><?= $this->Paginator->sort('divisao') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -40,10 +41,11 @@
                         <td><img class="img-thumbnail" style="max-width: 50px;" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($banner->foto), true) ?>" alt="<?= ($banner->nome); ?>"></td>
                         <td><?= $this->Pinheiro->status($banner->status) ?></td>
                         <td><?= $this->Pinheiro->posicao($banner->posicao) ?></td>
+                        <td><?= h($banner->divisao) ?></td>
                         <td><?= h($banner->created) ?></td>
                         <td class="actions">
                             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $banner->id], ['class' => 'btn btn-info btn-sm']) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $banner->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $banner->id)]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $banner->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Tem certeza de que deseja excluir este registro?', $banner->id)]) ?>
                         </td>
                     </tr>
 

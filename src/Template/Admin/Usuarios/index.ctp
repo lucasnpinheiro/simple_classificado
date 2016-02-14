@@ -47,7 +47,7 @@
                         <td><?= h($usuario->updated) ?></td>
                         <td class="actions">
                             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $usuario->id], ['class' => 'btn btn-info btn-sm']) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usuario->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $usuario->id)]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usuario->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Tem certeza de que deseja excluir este registro?', $usuario->id)]) ?>
                         </td>
                     </tr>
 
