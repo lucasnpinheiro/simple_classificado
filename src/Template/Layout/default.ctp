@@ -57,7 +57,7 @@
 
     <!-- Navigation -->
     <div class="navbar bs-docs-nav" role="banner">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -119,16 +119,16 @@
                         <?php
                         foreach ($_banners_topo as $key => $value) {
                             ?>
-                            <div class="item <?php echo $key === 0 ? 'active' : '' ?>" style="max-height: 150px;">
+                            <div class="item <?php echo $key === 0 ? 'active' : '' ?>">
                                 <?php if ($value->url != '') {
                                     ?>
                                     <a href="<?php echo $value->url; ?>">
-                                        <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                        <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt=""  style="max-height: 150px;">
                                     </a>
                                     <?php
                                 } else {
                                     ?>
-                                    <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt="">
+                                    <img class="slide-image" src="<?= $this->Url->build('/files/' . $this->Pinheiro->hasImage($value->foto), true) ?>" alt=""  style="max-height: 150px;">
                                 <?php } ?>
                             </div>
                             <?php

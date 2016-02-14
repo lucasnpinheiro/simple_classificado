@@ -21,6 +21,8 @@
                 <?php
                 echo $this->Form->input('quantidade', [
                     'label' => null,
+                    'type' => 'text',
+                    'class' => 'numero',
                     'value' => '1',
                     'append' => $this->Form->button('Adicionar ao carrinho'),
                     'escape' => false
