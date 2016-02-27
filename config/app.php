@@ -219,12 +219,12 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'nonstandard_port_number',
-            'username' => 'pshoppin_banco',
-            'password' => 'vitor1qazxdr5',
-            'database' => 'pshoppin_banco',
+            'username' => 'my_app',
+            'password' => 'secret',
+            'database' => 'test_myapp',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
-            'cacheMetadata' => false,
+            'cacheMetadata' => true,
 
             /**
              * Set identifier quoting to true if you are using reserved words or
