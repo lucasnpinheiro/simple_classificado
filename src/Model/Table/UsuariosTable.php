@@ -8,6 +8,8 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Search\Manager;
+use Cake\Event\Event;
+use Cake\ORM\Entity;
 
 /**
  * Usuarios Model
@@ -82,7 +84,7 @@ class UsuariosTable extends Table {
         return $rules;
     }
 
-    public function beforeSave(\Cake\Event\Event $event, \Cake\ORM\Entity $entity) {
+    public function beforeSave(Event $event, Entity $entity) {
         if (!empty($entity->senha)) {
             $senha = (new \Cake\Auth\DefaultPasswordHasher())->hash($entity->senha);
             $entity->senha = $senha;

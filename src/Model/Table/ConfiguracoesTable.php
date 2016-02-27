@@ -6,7 +6,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Configuracoes\Model\Entity\Configuraco;
 use Search\Manager;
 
 /**

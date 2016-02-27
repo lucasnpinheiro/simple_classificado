@@ -18,24 +18,18 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-/**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @link http://book.cakephp.org/3.0/en/controllers.html#the-app-controller
- */
 use Cake\Database\Type;
+use Cake\I18n\I18n;
 
 // Habilita o parseamento de datas localizadas
-Type::build('date')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy');
-Type::build('datetime')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
-Type::build('timestamp')->useLocaleParser()->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
+Type::build('date')->useLocaleParser()->setLocaleFormat('dd/M/yyyy');
+Type::build('datetime')->useLocaleParser()->setLocaleFormat('dd/M/yyyy HH:ii:ss');
+Type::build('timestamp')->useLocaleParser()->setLocaleFormat('dd/M/yyyy HH:ii:ss');
 
 // Habilita o parseamento de decimal localizaddos
 Type::build('decimal')->useLocaleParser();
 Type::build('float')->useLocaleParser();
+I18n::locale('pt_BR');
 
 class AppController extends Controller {
 
@@ -68,6 +62,9 @@ class AppController extends Controller {
         parent::initialize();
         $this->loadComponent('Cookie');
         $this->loadComponent('Flash');
+        $this->loadComponent('Search.Prg', [
+            'actions' => ['index']
+        ]);
         $this->loadComponent('Auth', [
             'loginRedirect' => [
                 'controller' => 'Usuarios',
@@ -79,10 +76,7 @@ class AppController extends Controller {
                 'action' => 'login',
                 'plugin' => null
             ],
-            'logoutRedirect' => [
-                'controller' => 'Produtos',
-                'action' => 'index'
-            ],
+            'logoutRedirect' => '/',
             'authorize' => ['controller'],
             'authenticate' => [
                 'Form' => [
@@ -91,12 +85,9 @@ class AppController extends Controller {
                     ],
                     'fields' => ['username' => 'email', 'password' => 'senha'],
                     'userModel' => 'Usuarios',
-                    'scope' => ['Usuarios.status' => 1],
+                    'scope' => ['status' => 1],
                 ]
             ]
-        ]);
-        $this->loadComponent('Search.Prg', [
-            'actions' => ['index']
         ]);
     }
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace Configuracoes\Controller\Admin;
 
-use Configuracoes\Controller\AppAdminController;
+namespace App\Controller\Admin;
+
+use App\Controller\Admin\AppAdminController;
 
 /**
  * Configuracoes Controller

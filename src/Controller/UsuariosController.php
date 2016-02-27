@@ -17,9 +17,13 @@ class UsuariosController extends AppController {
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect(['prefix' => 'admin', 'controller' => 'Usuarios', 'action' => 'index']);
             }
             $this->Flash->error(__('Usuário ou senha invalidos.'));
+        } else {
+            if (!is_null($this->Auth->user())) {
+                return $this->redirect(['prefix' => 'admin', 'controller' => 'Usuarios', 'action' => 'index']);
+            }
         }
     }
 
@@ -40,6 +44,36 @@ class UsuariosController extends AppController {
                 $this->Flash->error('Não foi possivel enviar a sua mensagem.');
             }
         }
+    }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Usuario id.
+     * @return void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null) {
+        $usuario = $this->Usuarios->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            if (trim($this->request->data['senha']) == '') {
+                unset($this->request->data['senha']);
+            }
+            $usuario = $this->Usuarios->patchEntity($usuario, $this->request->data);
+            if (trim($this->request->data['senha']) == '') {
+                $usuario->senha = null;
+            }
+            if ($this->Usuarios->save($usuario)) {
+                $this->Flash->success('The usuario has been saved.');
+                return $this->redirect(['action' => 'login']);
+            } else {
+                $this->Flash->error('The usuario could not be saved. Please, try again.');
+            }
+        }
+        $this->set(compact('usuario'));
+        $this->set('_serialize', ['usuario']);
     }
 
 }

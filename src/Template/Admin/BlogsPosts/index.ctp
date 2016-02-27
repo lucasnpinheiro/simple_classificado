@@ -2,8 +2,8 @@
     <div class="panel-heading">
         <div class="btn-group btn-group-sm pull-right">
             <?php
-            echo $this->Html->link(__('List'), ['plugin' => $this->request->params['plugin'], 'controller' => $this->request->params['controller'], 'action' => 'index'], ['class' => 'btn btn-info btn-sm']);
-            echo $this->Html->link(__('Add'), ['plugin' => $this->request->params['plugin'], 'controller' => $this->request->params['controller'], 'action' => 'add'], ['class' => 'btn btn-success btn-sm']);
+            echo $this->Html->link(__('List'), ['controller' => $this->request->params['controller'], 'action' => 'index'], ['class' => 'btn btn-info btn-sm']);
+            echo $this->Html->link(__('Add'), ['controller' => $this->request->params['controller'], 'action' => 'add'], ['class' => 'btn btn-success btn-sm']);
             ?>
         </div>
         <h4><?php echo $this->request->params['controller']; ?> <?= __('List') ?></h4>
@@ -13,10 +13,10 @@
         <div class="panel panel-info">
             <div class="panel-body">
 
-                <?= $this->Form->create($blogsPost, ['type' => 'file', 'class' => 'form-inline busca']); ?>
+                  <?= $this->Form->create(null, ['type' => 'file', 'class' => 'form-inline busca']); ?>
                 <?php
-                echo $this->Form->input('BlogsPost.titulo', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-8'], 'placeholder' => 'Titulo', 'required' => false, 'label' => false, 'empty' => 'Titulo']);
-                echo $this->Form->input('BlogsPost.status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
+                echo $this->Form->input('titulo', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-8'], 'placeholder' => 'Titulo', 'required' => false, 'label' => false, 'empty' => 'Titulo']);
+                echo $this->Form->input('status', ['class' => 'col-xs-12', 'div' => ['class' => 'col-xs-12 col-md-4'], 'placeholder' => 'Situação', 'required' => false, 'label' => false, 'empty' => 'Situação', 'options' => ['0' => 'Inativo', '1' => 'Ativo']]);
                 ?>
                 <?= $this->Form->end() ?>
             </div>
@@ -44,8 +44,8 @@
                         <td><?= h($blogsPost->modified) ?></td>
                         <td><?= h($blogsPost->updated) ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('Edit'), ['plugin' => $this->request->params['plugin'], 'action' => 'edit', $blogsPost->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['plugin' => $this->request->params['plugin'], 'action' => 'delete', $blogsPost->id], ['confirm' => __('Are you sure you want to delete # {0}?', $blogsPost->id)]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $blogsPost->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $blogsPost->id], ['confirm' => __('Are you sure you want to delete # {0}?', $blogsPost->id)]) ?>
                         </td>
                     </tr>
 

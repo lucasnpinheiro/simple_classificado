@@ -41,22 +41,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?= $this->Url->build('/admin/usuarios', true) ?>"><?php echo \Cake\Core\Configure::read('Topo.TituloLogo') ?></a>
+                    <a class="navbar-brand" href="<?= $this->Url->build('/admin/usuarios', true) ?>"><?php echo \Cake\Core\Configure::read('Topo.Titulo') ?></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><?php echo $this->Html->link('Categorias', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Categorias', 'action' => 'index']); ?></li>
-                        <li><?php echo $this->Html->link('Produtos', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Produtos', 'action' => 'index']); ?></li>
-                        <li><?php echo $this->Html->link('Clientes', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Clientes', 'action' => 'index']); ?></li>
-                        <li><?php echo $this->Html->link('Pedidos', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Pedidos', 'action' => 'index']); ?></li>
-                        <li><?php echo $this->Html->link('Banners', ['plugin' => false, 'prefix' => 'admin', 'controller' => 'Banners', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Categorias', ['prefix' => 'admin', 'controller' => 'Categorias', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Produtos', ['prefix' => 'admin', 'controller' => 'Produtos', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Clientes', ['prefix' => 'admin', 'controller' => 'Clientes', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Pedidos', ['prefix' => 'admin', 'controller' => 'Pedidos', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Banners', ['prefix' => 'admin', 'controller' => 'Banners', 'action' => 'index']); ?></li>
                         <li class="dropdown">
                             <?php echo $this->Html->link('Blog <span class="caret"></span>', '#', ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
                             <ul class="dropdown-menu" role="menu">
                                 <?php
-                                echo '<li>' . $this->Html->link('Postagens', ['plugin' => 'Blogs', 'controller' => 'BlogsPosts', 'action' => 'index']) . '</li>';
-                                echo '<li>' . $this->Html->link('Painas', ['plugin' => 'Blogs', 'controller' => 'BlogsPages', 'action' => 'index']) . '</li>';
+                                echo '<li>' . $this->Html->link('Postagens', ['controller' => 'BlogsPosts', 'action' => 'index']) . '</li>';
+                                echo '<li>' . $this->Html->link('Painas', ['controller' => 'BlogsPages', 'action' => 'index']) . '</li>';
                                 ?>
                             </ul>
                         </li>
@@ -68,9 +68,9 @@
                             <?php echo $this->Html->link($this->request->session()->read('Auth.User.nome') . ' <span class="caret"></span>', '#', ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
                             <ul class="dropdown-menu" role="menu">
                                 <?php
-                                echo '<li>' . $this->Html->link('Configurações', ['plugin' => 'Configuracoes', 'controller' => 'Configuracoes', 'action' => 'index']) . '</li>';
-                                echo '<li>' . $this->Html->link('Perfil', ['plugin' => false, 'controller' => 'Usuarios', 'action' => 'edit', $this->request->session()->read('Auth.User.id')]) . '</li>';
-                                echo '<li>' . $this->Html->link('Sair', ['plugin' => false, 'controller' => 'Usuarios', 'action' => 'logout', 'prefix' => false]) . '</li>';
+                                echo '<li>' . $this->Html->link('Configurações', ['controller' => 'Configuracoes', 'action' => 'index']) . '</li>';
+                                echo '<li>' . $this->Html->link('Perfil', ['controller' => 'Usuarios', 'action' => 'edit', $this->request->session()->read('Auth.User.id')]) . '</li>';
+                                echo '<li>' . $this->Html->link('Sair', ['controller' => 'Usuarios', 'action' => 'logout', 'prefix' => false]) . '</li>';
                                 ?>
                             </ul>
                         </li>

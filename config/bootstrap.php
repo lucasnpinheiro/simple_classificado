@@ -196,8 +196,27 @@ DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
 
 
-// Meus Plugins
-Plugin::load('Configuracoes', ['bootstrap' => true, 'routes' => true]);
-Plugin::load('Blogs', ['bootstrap' => false, 'routes' => true]);
+
+// In a controller or table method.
+use Cake\ORM\TableRegistry;
 
 
+$configuracoes = TableRegistry::get('Configuracoes');
+$find = $configuracoes->find('all');
+$retorno = [];
+if (count($find) > 0) {
+    foreach ($find as $key => $value) {
+        $retorno[$value->chave] = $value->value;
+    }
+}
+\Cake\Core\Configure::write($retorno);
+unset($configuracoes, $find, $retorno);
+
+Email::configTransport('System', [
+    'host' =>\Cake\Core\Configure::read('Email.Host'),
+    'port' => \Cake\Core\Configure::read('Email.Porta'),
+    'username' => \Cake\Core\Configure::read('Email.Email'),
+    'password' => \Cake\Core\Configure::read('Email.Senha'),
+    'tls' => \Cake\Core\Configure::read('Email.Ssl'),
+    'className' => 'Smtp'
+]);

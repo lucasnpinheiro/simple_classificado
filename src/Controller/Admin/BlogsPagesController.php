@@ -1,8 +1,9 @@
 <?php
 
-namespace Blogs\Controller\Admin;
 
-use Blogs\Controller\Admin\AppAdminController;
+namespace App\Controller\Admin;
+
+use App\Controller\Admin\AppAdminController;
 
 /**
  * BlogsPages Controller

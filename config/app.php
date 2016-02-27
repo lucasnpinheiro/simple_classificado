@@ -211,20 +211,20 @@ return [
         'default' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
-            'persistent' => true,
-            'host' => 'localhost',
+            'persistent' => false,
+            'host' => 'pinheiroshopping.com.br',
             /**
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
             //'port' => 'nonstandard_port_number',
-            'username' => 'root',
-            'password' => '123456',
-            'database' => 'vitor_classificados',
+            'username' => 'pshoppin_banco',
+            'password' => 'vitor1qazxdr5',
+            'database' => 'pshoppin_banco',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
-            'cacheMetadata' => true,
+            'cacheMetadata' => false,
 
             /**
              * Set identifier quoting to true if you are using reserved words or
@@ -252,7 +252,7 @@ return [
         'test' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
-            'persistent' => false,
+            'persistent' => true,
             'host' => 'localhost',
             //'port' => 'nonstandard_port_number',
             'username' => 'my_app',
@@ -260,7 +260,7 @@ return [
             'database' => 'test_myapp',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
-            'cacheMetadata' => false,
+            'cacheMetadata' => true,
             'quoteIdentifiers' => false,
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],

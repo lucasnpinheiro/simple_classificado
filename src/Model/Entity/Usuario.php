@@ -19,12 +19,4 @@ class Usuario extends Entity {
         '*' => true,
     ];
 
-    protected function _setSenha($password) {
-        if (!empty($password)) {
-            return (new DefaultPasswordHasher)->hash($password);
-        }
-        return null;
-    }
-    
-
 }

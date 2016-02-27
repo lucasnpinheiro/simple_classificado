@@ -70,24 +70,24 @@
                 <ul class="nav navbar-nav">
                     <li><?php echo $this->Html->link('Pagina Inicial', '/'); ?></li>
                     <li class="dropdown">
-                        <?php echo $this->Html->link('Produtos <span class="caret"></span>', ['plugin' => false, 'controller' => 'produtos', 'action' => 'index'], ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
+                        <?php echo $this->Html->link('Produtos <span class="caret"></span>', ['controller' => 'produtos', 'action' => 'index'], ['escape' => false, 'class' => "dropdown-toggle", 'data-toggle' => "dropdown", 'role' => "button", 'aria-expanded' => "false"]); ?>
                         <ul class="dropdown-menu" role="menu">
                             <?php
                             foreach ($this->Pinheiro->categorias() as $key => $value) {
-                                echo '<li>' . $this->Html->link($value->nome, ['plugin' => false, 'controller' => 'produtos', 'action' => 'categoria', 'categoria' => $value->id]) . '</li>';
+                                echo '<li>' . $this->Html->link($value->nome, ['controller' => 'produtos', 'action' => 'categoria', 'categoria' => $value->id]) . '</li>';
                             }
                             ?>
                         </ul>
                     </li>
                     <li><?php echo $this->Html->link('Contato', '/contatos'); ?></li>
-                    <li><?php echo $this->Html->link('Blog', ['plugin' => 'Blogs', 'controller' => 'BlogsPosts', 'action' => 'index']); ?></li>
+                    <li><?php echo $this->Html->link('Blog', ['controller' => 'BlogsPosts', 'action' => 'index']); ?></li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><?php echo $this->Html->link('Meus Pedidos', ['plugin' => false, 'controller' => 'Pedidos', 'action' => 'lista']); ?></li>
+                    <li><?php echo $this->Html->link('Meus Pedidos', ['controller' => 'Pedidos', 'action' => 'lista']); ?></li>
                     <?php if ($this->request->session()->read('Cliente.id')) { ?>
-                        <li><?php echo $this->Html->link('Logout', ['plugin' => false, 'controller' => 'Clientes', 'action' => 'logout']); ?></li>
-                        <li><?php echo $this->Html->link('Meu Carrinho', ['plugin' => false, 'controller' => 'PedidosProdutos', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Logout', ['controller' => 'Clientes', 'action' => 'logout']); ?></li>
+                        <li><?php echo $this->Html->link('Meu Carrinho', ['controller' => 'PedidosProdutos', 'action' => 'index']); ?></li>
 
                     <?php } ?>
                 </ul>
@@ -230,7 +230,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="text-left col-xs-4"><?php echo $this->Html->link('Área Administrativa', array('controller' => 'Usuarios', 'action' => 'login')); ?></div>
-                    <div class="text-center col-xs-4"><?php echo $this->Html->link('Blog', array('plugin' => 'Blogs', 'controller' => 'BlogsPages', 'action' => 'index')); ?></div>
+                    <div class="text-center col-xs-4"><?php echo $this->Html->link('Blog', array('controller' => 'BlogsPages', 'action' => 'index')); ?></div>
                     <div class="text-right col-xs-4">Desenvolvido por <?= $this->Html->link('Agência Voxel', 'http://agenciavoxel.com.br') ?></div>
                 </div>
             </div>

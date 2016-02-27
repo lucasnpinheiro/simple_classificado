@@ -108,7 +108,7 @@
                                 </ul>
                             </li>
                             <li><?php echo $this->Html->link('Contato', '/contatos'); ?></li>
-                            <li><?php echo $this->Html->link('Blog', ['plugin' => 'Blogs', 'controller' => 'BlogsPosts', 'action' => 'index']); ?></li>
+                            <li><?php echo $this->Html->link('Blog', ['controller' => 'BlogsPosts', 'action' => 'index']); ?></li>
 
                         </ul>
                         <?php if ($this->request->session()->read('Cliente.id')) { ?>

@@ -1,8 +1,8 @@
 <?php
 
-namespace Blogs\Controller;
+namespace App\Controller;
 
-use Blogs\Controller\AppController;
+use App\Controller\AppController;
 
 /**
  * BlogsPosts Controller
