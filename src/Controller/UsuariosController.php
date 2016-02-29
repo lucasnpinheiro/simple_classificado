@@ -53,7 +53,7 @@ class UsuariosController extends AppController {
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null) {
+    /*public function edit($id = null) {
         $usuario = $this->Usuarios->get($id, [
             'contain' => []
         ]);
@@ -74,6 +74,6 @@ class UsuariosController extends AppController {
         }
         $this->set(compact('usuario'));
         $this->set('_serialize', ['usuario']);
-    }
+    }*/
 
 }

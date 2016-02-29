@@ -2,3 +2,4 @@
 /tmp/*
 /logs/*
 /config/app.php
+/nbproject/private/
